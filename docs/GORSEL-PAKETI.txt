@@ -1,0 +1,301 @@
+ÇANKIRI GAZOZU — WEB GÖRSEL PAKETİ
+Hazırlanma tarihi: 12 Ağustos 2026
+
+KLASÖR YAPISI
+
+public/hero/
+  01-world.jpg       2400 x 2400  — Uzaydan Dünya
+  02-turkey.jpg      2400 x 2400  — Türkiye; Çankırı merkez hedefinde
+  03-cankiri.jpg     2400 x 2400  — Çankırı ili; Orta merkez hedefinde
+  04-orta.jpg        2400 x 2400  — Orta; fabrika koordinatı merkez hedefinde
+
+public/factory/
+  fabrika-dis.jpg    2560 x 1440  — Resmî Instagram videosundan gerçek drone karesi
+
+public/products/
+  portakalli-gazoz.png  1000 x 2400 — Şeffaf arka plan
+  sade-gazoz.png        1000 x 2400 — Şeffaf arka plan
+  kizilcikli-gazoz.png  1000 x 2400 — Şeffaf arka plan
+
+public/
+  logo.png               1024 x 1024 — Şeffaf arka plan
+  paylasim-gorseli.jpg    1200 x 630  — WhatsApp/Facebook/Open Graph kartı
+
+KULLANILACAK YOLLAR
+
+Hero:
+  /hero/01-world.jpg
+  /hero/02-turkey.jpg
+  /hero/03-cankiri.jpg
+  /hero/04-orta.jpg
+
+Fabrika:
+  /factory/fabrika-dis.jpg
+
+Ürünler:
+  /products/portakalli-gazoz.png
+  /products/sade-gazoz.png
+  /products/kizilcikli-gazoz.png
+
+Marka:
+  /logo.png
+  /paylasim-gorseli.jpg
+
+KODDA YAPILACAK DEĞİŞİKLİK
+
+src/data/hero.ts ve src/data/products.ts içindeki image: null alanlarına yukarıdaki
+yollar yazılmalı. Diğer dosyalara dokunmaya gerek yok.
+
+MERKEZLEME
+
+Harita kareleri merkez hedefi gözetilerek hazırlandı. Önemli hedefler ortadaki
+%60'lık güvenli alandadır. object-cover masaüstünde ve telefonda kenarlardan
+kırpma yapacaktır; dosyaların kare olması bu yüzden bilinçli bir tercihtir.
+
+KAYNAKLAR
+
+Çankırı Gazozu resmî Instagram hesabı:
+  https://www.instagram.com/cankirigazozu/
+
+Resmî üç ürün fotoğrafı:
+  https://www.instagram.com/cankirigazozu/p/DbONZKsNVQO/
+
+Fabrika açılışı / gerçek drone videosu:
+  https://www.instagram.com/kaptmustafacan/reel/Daw9Rw_KCuM/
+  Video, Çankırı Gazozu hesabıyla ortak gönderidir.
+
+Dünya görseli — NASA Blue Marble:
+  https://svs.gsfc.nasa.gov/2915
+
+Uydu katmanları — Esri World Imagery:
+  https://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9
+
+Fabrika konumu kontrolü:
+  Çankırı Gazozu Üretim Tesisleri, Hüyükköy Köyü / Orta / Çankırı
+  Yaklaşık merkez: 40.588559, 33.182078
+
+ÖNEMLİ DÜRÜSTLÜK NOTLARI
+
+1. fabrika-dis.jpg üretken yapay zekâ görseli değildir. Resmî 1080p Instagram
+   videosundaki gerçek drone karesi yalnızca 16:9 kırpıldı ve hedef çözünürlüğe
+   büyütüldü. Karede açılış kalabalığının bir bölümü görünür; gerçek içerik
+   bozulmasın diye insan veya araç silinmedi.
+
+2. paylasim-gorseli.jpg üretken yapay zekâ görseli değildir. Gerçek fabrika
+   karesi, resmî ürün fotoğrafı ve resmî profil logosunun düzenlenmiş birleşimidir.
+
+3. Üç şeffaf ürün PNG'si, resmî ürün fotoğrafı referans alınarak AI destekli
+   ürün ayrıştırma taslağı olarak hazırlandı. Şişe biçimi, renk ve etiket düzeni
+   korunmaya çalışıldı; ancak küçük etiket yazıları birebir baskı dosyası değildir.
+   Nihai ticari kullanım için aynı açıdan çekilmiş gerçek stüdyo ürün fotoğraflarıyla
+   değiştirilmesi tavsiye edilir.
+
+4. uretim-01.jpg ... uretim-05.jpg pakete eklenmedi. İnternette Çankırı Gazozu
+   tesisine ait olduğu doğrulanabilen, yeterli çözünürlükte şişeleme hattı / dolum /
+   depo fotoğrafı bulunamadı. Başka fabrikaların üretim görüntülerini Çankırı diye
+   sunmak yanıltıcı olacağı için sahte veya alakasız görsel kullanılmadı. Marka
+   sahibinden gerçek iç mekân fotoğrafları alınmalıdır.
+
+5. Instagram ve haber kaynaklı marka fotoğraflarının web sitesinde yayımlanması
+   için hak sahibinin izni kontrol edilmelidir. NASA görseli kamu malıdır. Esri
+   uydu görüntüsü kullanılırken Esri ve veri sağlayıcılarına uygun atıf ile güncel
+   kullanım koşulları dikkate alınmalıdır.
+
+KALİTE KONTROLÜ
+
+Dosya adlarında Türkçe karakter ve boşluk yoktur. Hero görselleri RGB JPEG,
+ürünler ve logo alfa kanallı PNG'dir. Bütün hedef piksel ölçüleri doğrulanmıştır.
+
+
+ÜRÜN GÖRSELLERİ İÇİN SEO METİNLERİ
+
+Bu bölüm, 300-Projects/Cankiri-Gazozu-Website/SEO-Metinleri.md içindeki ürün
+stratejisine göre hazırlanmıştır. Metinler görsel alt alanlarında, ürün kartlarında
+ve ürün detay sayfalarında doğrudan kullanılabilir.
+
+ÖNEMLİ İSİM EŞLEŞTİRMESİ
+
+  sade-gazoz.png dosyası sitede “Klasik Gazoz” adıyla gösterilmelidir.
+  Dosya adını değiştirmek zorunlu değildir; ürün adı, H1 ve SEO metinlerinde
+  “Klasik Gazoz” kullanılmalıdır.
+
+
+ÜRÜNLER KATEGORİ SAYFASI
+
+Meta title:
+  Ürünlerimiz | Çankırı Gazozu Çeşitleri — Cam Şişe
+
+Meta description:
+  Kızılcık, klasik ve portakal aromalı Çankırı Gazozu çeşitleri. Hepsi cam
+  şişede, Çankırı'daki kendi fabrikamızda üretiliyor.
+
+H1:
+  Üç Aroma, Tek Şişe: Cam
+
+Giriş metni:
+  Ürün sayısını çoğaltmak kolaydır. Zor olan, her birinin arkasında
+  durabilmektir. Bu yüzden şu an rafta üç ürünümüz var: Kızılcık, Klasik ve
+  Portakal. Üçü de cam şişede, üçü de Çankırı'da üretiliyor.
+
+Üç ürünün birlikte kullanıldığı görseller için alt metin:
+  Cam şişede Çankırı Gazozu kızılcık, klasik ve portakal çeşitleri
+
+
+1. KIZILCIK GAZOZU
+
+Görsel dosyası:
+  /products/kizilcikli-gazoz.png
+
+Önerilen alt metin:
+  Cam şişede Çankırı Gazozu kızılcık aromalı gazoz
+
+Görsel title değeri:
+  Çankırı Gazozu Kızılcık — Cam Şişe
+
+Görsel açıklaması / caption:
+  Ekşi ve canlı kızılcık aroması, cam şişede Çankırı Gazozu yorumuyla.
+
+Ürün kartı başlığı:
+  Kızılcık Gazozu
+
+Ürün kartı kısa metni:
+  Çankırı'nın kızılcığından ilham alan, ekşi ve canlı karakteriyle diğer
+  gazozlardan ayrılan özgün bir tat.
+
+Meta title:
+  Kızılcık Gazozu | Türkiye'de İlk ve Tek — Çankırı Gazozu
+
+Meta description:
+  Çankırı'nın kızılcığından, cam şişede. Türkiye'nin ilk ve tek kızılcık
+  aromalı gazozu. Ekşi, canlı, başka hiçbir gazoza benzemeyen bir tat.
+
+H1:
+  Kızılcık Gazozu
+
+Ürün alt başlığı:
+  Türkiye'de ilk ve tek · Cam şişe
+
+SEO ürün metni:
+  Kızılcık, belirgin ekşiliği ve meyvemsi derinliği nedeniyle dengelenmesi
+  ustalık isteyen bir aroma. Çankırı Gazozu Kızılcık, ilk yudumda canlı bir
+  ekşilik, ardından temiz ve ferah bir bitiş sunar. Özellikle kebap, pide,
+  mangal ve Çankırı'nın etli yemekleriyle iyi eşleşir. En iyi deneyim için
+  buz gibi soğuk tüketilmesi önerilir.
+
+Anahtar kelimeler:
+  kızılcık gazozu, kızılcık aromalı gazoz, cam şişe gazoz, Çankırı Gazozu
+
+Yayın notu:
+  “Türkiye'de ilk ve tek” iddiası marka tarafından yazılı olarak teyit
+  edilmeden kesin reklam iddiası olarak yayımlanmamalıdır.
+
+
+2. KLASİK GAZOZ
+
+Görsel dosyası:
+  /products/sade-gazoz.png
+
+Önerilen alt metin:
+  Cam şişede Çankırı Gazozu klasik sade gazoz
+
+Görsel title değeri:
+  Çankırı Gazozu Klasik — Cam Şişe
+
+Görsel açıklaması / caption:
+  Hafızalardaki sade ve dengeli gazoz tadı, geleneksel cam şişede.
+
+Ürün kartı başlığı:
+  Klasik Gazoz
+
+Ürün kartı kısa metni:
+  Sade, dengeli ve tanıdık. Eski usul gazozun ferahlığını cam şişede bugüne
+  taşıyan klasik lezzet.
+
+Meta title:
+  Klasik Gazoz | Cam Şişede Nostaljik Tat — Çankırı Gazozu
+
+Meta description:
+  Hafızanızdaki gazoz. Sade, dengeli, cam şişede. Çankırı Gazozu Klasik,
+  eski usul gazozun tadını bugüne taşıyor.
+
+H1:
+  Klasik Gazoz
+
+Ürün alt başlığı:
+  Cam şişe · Sade ve dengeli
+
+SEO ürün metni:
+  Çankırı Gazozu Klasik, baskın bir meyve aromasına ihtiyaç duymayan,
+  hafızalardaki geleneksel gazoz tadını temel alır. Dengeli tatlılık, canlı
+  karbonasyon ve temiz bitiş sunar. Sofrada, mangalda veya yolda; yemeğin
+  önüne geçmeden ferahlatan sade bir cam şişe gazoz seçeneğidir.
+
+Anahtar kelimeler:
+  klasik gazoz, sade gazoz, nostaljik gazoz, eski usul gazoz, cam şişe gazoz
+
+
+3. PORTAKAL GAZOZU
+
+Görsel dosyası:
+  /products/portakalli-gazoz.png
+
+Önerilen alt metin:
+  Cam şişede Çankırı Gazozu portakal aromalı gazoz
+
+Görsel title değeri:
+  Çankırı Gazozu Portakal — Cam Şişe
+
+Görsel açıklaması / caption:
+  Dolgun portakal aroması ve canlı ferahlık, cam şişede yerli üretim.
+
+Ürün kartı başlığı:
+  Portakal Gazozu
+
+Ürün kartı kısa metni:
+  Dolgun ve yuvarlak portakal aromasıyla serin, tanıdık ve ferahlatıcı bir
+  yerli gazoz seçeneği.
+
+Meta title:
+  Portakal Gazozu | Yerli Üretim, Cam Şişe — Çankırı Gazozu
+
+Meta description:
+  Dolgun portakal aroması, cam şişede. Çankırı'daki kendi fabrikamızda
+  üretilen yerli portakal gazozu.
+
+H1:
+  Portakal Gazozu
+
+Ürün alt başlığı:
+  Cam şişe · Yerli üretim
+
+SEO ürün metni:
+  Çankırı Gazozu Portakal, en sevilen gazoz aromalarından birini yerli üretim
+  ve cam şişe tercihiyle sunar. Dolgun, yuvarlak ve dengeli portakal aroması;
+  soğuk tüketildiğinde ferahlığını belirgin biçimde gösterir. Tuzlu
+  atıştırmalıklar, çerez ve keyifli akşam sofralarıyla iyi eşleşir.
+
+Anahtar kelimeler:
+  portakal gazozu, portakallı gazoz, yerli portakal gazozu, cam şişe gazoz
+
+
+GÖRSEL SEO UYGULAMA NOTLARI
+
+1. Alt metinler görseli tarif etmeli; aynı anahtar kelime her görselde tekrar
+   edilmemelidir. Dekoratif görsellerde alt="" kullanılabilir.
+
+2. Ürün kartında görünen ürün adı ile sayfanın H1'i aynı olmalıdır. Dosya adı
+   sade-gazoz.png olsa bile kullanıcıya “Klasik Gazoz” gösterilmelidir.
+
+3. Ürün detay sayfaları birbirine çapraz bağlanmalı; özellikle Kızılcık Gazozu
+   sayfasına ana sayfa ve ürünler sayfasından açıklayıcı metinli bağlantı verilmelidir.
+
+4. Ürün görselleri next/image ile sunulmalı; width ve height değerleri
+   1000 ve 2400 olarak tanımlanmalıdır. Şişenin tamamı göründüğü için object-fit:
+   contain kullanılmalıdır.
+
+5. Open Graph görseli olarak /paylasim-gorseli.jpg kullanılabilir. Ürüne özel
+   paylaşım kartları hazırlanırsa kart üzerindeki şişe ile sayfadaki ürün aynı
+   olmalıdır.
+
+6. Hacim, koli içi adet, raf ömrü, içindekiler ve besin değeri gibi bilgiler
+   ambalajdan veya marka sahibinden birebir doğrulanmadan ürün metnine eklenmemelidir.
