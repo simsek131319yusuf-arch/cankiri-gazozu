@@ -1,0 +1,419 @@
+ÇANKIRI GAZOZU — WEB SİTESİ DEVİR NOTU
+Son güncelleme: 12 Ağustos 2026
+
+Bu dosya projeyi devralacak geliştirici içindir. Sitenin mevcut durumu, alınmış
+mimari kararlar, bilinen eksikler ve önerilen çalışma sırası burada.
+
+
+═══════════════════════════════════════════════════════════════════════════
+0. HIZLI BAŞLANGIÇ
+═══════════════════════════════════════════════════════════════════════════
+
+  npm install
+  npm run dev      → http://localhost:3000
+  npm run lint
+  npm run build
+
+Stack: Next.js 16 (App Router, Turbopack) · React 19 · TypeScript ·
+Tailwind CSS 4 · motion (framer-motion) · next-intl
+
+Durum: lint ve build hatasız. 19 sayfa statik üretiliyor.
+Diller: Türkçe kökte (/), İngilizce /en altında.
+
+
+═══════════════════════════════════════════════════════════════════════════
+1. MİMARİ KARARLAR — BUNLARI BOZMAYIN
+═══════════════════════════════════════════════════════════════════════════
+
+1.1 ADMİN PANELİ HAZIRLIĞI
+Site şu an statik içerikle çalışıyor ama admin paneli sonradan eklenecek.
+Bunun için tek bir kural var:
+
+  Ürün verisi YALNIZCA şu iki fonksiyondan okunur:
+      src/data/products.ts → getProducts() / getProductBySlug()
+
+  Bayilik başvurusu YALNIZCA şu fonksiyondan geçer:
+      src/lib/dealer.ts → submitDealerApplication()
+
+Bu fonksiyonlar bilerek async yazıldı. Veritabanına geçildiğinde sadece
+gövdeleri değişecek, sayfalara hiç dokunulmayacak. Bir sayfa bu fonksiyonları
+atlayıp veriye doğrudan erişirse admin paneli baştan yazım demektir.
+
+1.2 CANONICAL / HREFLANG
+Her sayfa kendi canonical'ını src/lib/seo.ts → buildAlternates() ile üretir.
+Layout'a canonical KOYMAYIN. Next.js'te layout metadata'sındaki alternates
+alt sayfalara miras kalır ve tanımlamayan her sayfa kendini ana sayfanın
+kopyası ilan eder — hiçbiri indekslenmez. Bu hata bir kez yapıldı ve
+düzeltildi; tekrarlanmasın.
+
+1.3 ÜRÜN ADI / DOSYA ADI UYUŞMAZLIĞI
+public/products/sade-gazoz.png dosyasının adı korunuyor, ancak ürün
+kullanıcıya her yerde "Klasik Gazoz" olarak gösterilir (kart, H1, meta,
+alt metin, JSON-LD). Dosya adını değiştirmek zorunlu değil.
+
+1.4 SLUG'LAR
+/urunler/kizilcik-gazozu · /urunler/klasik-gazoz · /urunler/portakal-gazozu
+"kızılcık gazozu" en değerli anahtar kelime; slug buna göre seçildi.
+Site canlıya çıktıktan sonra slug DEĞİŞTİRMEYİN (301 gerekir).
+
+1.5 DOĞRULANMAMIŞ BİLGİ YAYINLANMAZ
+Şişe hacmi, koli adedi, raf ömrü, içindekiler, besin değeri ve sertifika
+bilgileri ambalajdan birebir doğrulanmadan siteye konmaz. Bu alanlar kodda
+TODO olarak duruyor, arayüzde gösterilmiyor. volumeMl şu an null.
+
+
+═══════════════════════════════════════════════════════════════════════════
+2. YAYINDAN ÖNCE MUTLAKA YAPILACAKLAR
+═══════════════════════════════════════════════════════════════════════════
+
+2.1 BAYİLİK BAŞVURULARI KAYBOLUYOR  ← EN KRİTİK
+Dosya: src/lib/dealer.ts
+
+RESEND_API_KEY tanımlı değilse başvuru veritabanına kaydedilmiyor; sunucu
+loguna yazılıp kullanıcıya "başarılı" mesajı gösteriliyor.
+
+Sonuçları:
+  - Gerçek bir bayilik talebi sessizce kaybolabilir.
+  - Ad, telefon, firma, e-posta gibi kişisel veriler sunucu loglarında kalır.
+
+Olması gereken:
+  1. Başvuru önce veritabanına kaydedilir.
+  2. Sonra bildirim e-postası gönderilir.
+  3. E-posta gönderilemese bile kayıt kaybolmaz.
+  4. Yöneticiye hata bildirimi düşer.
+  5. Üretimde yapılandırma eksikse kullanıcıya SAHTE BAŞARI gösterilmez.
+
+2.2 FORM GÜVENLİĞİ VE KVKK
+Dosya: src/app/[locale]/bayilik/actions.ts
+
+Eksikler:
+  - Sunucu tarafında maksimum karakter sınırı yok.
+  - Telefon doğrulaması sadece "en az 10 rakam".
+  - Rate limit yok.
+  - Bot/honeypot koruması yok.
+  - İstemciden gelen `locale` değeri izinli dillerle sınırlandırılmamış.
+  - KVKK aydınlatma metni ve açık rıza onayı yok.
+  - Gizlilik politikası bağlantısı yok.
+  - E-posta servisi çağrısında timeout yok.
+
+En az şunlar eklenmeli: rate limit, gizli honeypot alanı, maksimum uzunluklar,
+KVKK onay kutusu.
+
+2.3 DOĞRULANMAMIŞ FİRMA BİLGİLERİ
+Dosya: src/data/site.ts
+
+Kesinleşmesi gerekenler:
+  - Resmî ticari unvan
+  - Alan adı: .com mu, .com.tr mi?   (SEO metinlerinde .com.tr, kodda .com)
+  - Tam fabrika adresi, parsel/kapı no, posta kodu
+  - Telefon numarası
+  - Başvuruların gideceği gerçek e-posta
+  - Instagram hesabı  (iki kaynak çelişiyor: @cankirigazozu ve @cankirigazozu_18
+    bu yüzden sameAs şu an BOŞ bırakıldı — yanlış hesap Google'a hatalı sinyal)
+  - Kesin fabrika koordinatı
+
+Bu dosya yalnızca footer'ı beslemiyor: canonical adresler, sitemap,
+Open Graph ve Organization Schema da buradan okuyor. Yanlış alan adıyla
+yayına çıkılırsa bütün SEO sinyalleri yanlış domaine gider.
+
+2.4 "TÜRKİYE'DE İLK VE TEK" İDDİASI
+Kızılcık ürününde rozet ve meta title'da yayında. Bu kesin bir ticari
+üstünlük iddiası. Marka tarafından yazılı teyit edilmezse "Türkiye'de bir ilk"
+gibi daha güvenli bir ifadeyle değiştirilmeli.
+
+
+═══════════════════════════════════════════════════════════════════════════
+3. INTRO VİDEOSU
+═══════════════════════════════════════════════════════════════════════════
+
+Dosya: src/components/hero/HeroIntro.tsx
+Videolar: public/video/
+
+ÖLÇÜLEN DEĞERLER (12 Ağustos 2026):
+  intro-desktop.webm    10,6 MB
+  intro-desktop.mp4     13,6 MB
+  intro-mobile.webm     10,5 MB
+  intro-mobile.mp4      13,2 MB
+  Süre                  8,6 saniye
+  Çözünürlük            1920x1080 (masaüstü) / 1080x1920 (mobil, dikey)
+  Bitrate               ~13 Mbps
+  faststart             AYARLI (moov başta — doğru)
+  fragmented            HAYIR (duration okunabiliyor — doğru)
+  Poster görseli        ~956 KB
+
+SORUN: 13 Mbps, 1080p web videosu için 3-4 kat fazla. 10,5 MB dosya gerçek
+4G'de (~8 Mbps) yaklaşık 10-11 saniyede iner; video ise 8,6 saniye. Yani
+indirme bitmeden video bitiyor. Ayrıca mobil dosya masaüstüyle aynı boyutta,
+mobil varyantın hafiflik kazancı kalmamış (dikey çerçeveleme kazancı duruyor).
+
+HEDEF: süre 5-6 saniye, masaüstü webm 4-6 MB, mobil webm 3-5 MB.
+MP4 yalnızca uyumluluk fallback'i; daha agresif sıkıştırılabilir.
+
+--- KOD TARAFINDA BİLİNEN HATA ---
+Emniyet zamanlayıcısı video süresine göre hesaplanıyor:
+    duration (8,6 sn) + 3 sn pay = 11,6 saniye
+Yavaş bağlantıda video buffer'da beklerken bu süre dolar ve intro VİDEO
+BİTMEDEN zorla kapanır. Doğrusu süreye değil oynatma ilerlemesine bakmak:
+"son N saniyede currentTime hiç ilerlemediyse kes" (timeupdate ile).
+Ayrıca metadata için konan 8 saniyelik sınır, 8,6 saniyelik videoyla sınırda.
+
+--- DİĞER INTRO NOTLARI ---
+  - Video şu an her açılışta oynuyor (Yusuf'un kararıydı). Oturum bayrağı
+    yalnızca kullanıcı "Geç"e basarsa yazılıyor; video doğal biterse
+    yenilemede tekrar oynar. İstenirse "oturumda bir kez" davranışına çevrilir.
+  - Intro sırasında pencerede Enter/Space videoyu kapatıyor. Klavye ve ekran
+    okuyucu kullanıcılarında beklenmedik sonuç verir; yalnızca Escape ve
+    görünür "Geç" düğmesi bırakılmalı.
+  - Videoda sağ tık menüsünün engellenmesinin gerçek güvenlik faydası yok,
+    kaldırılabilir.
+  - Perdedeki role="presentation" kaldırılmalı; içinde etkileşimli düğme var.
+
+--- ÇALIŞTIĞI DOĞRULANANLAR ---
+Gerçek Chrome ile ağ günlüğü alınarak test edildi:
+  - Masaüstünde YALNIZ intro-desktop.webm indiriliyor.
+  - Mobilde YALNIZ intro-mobile.webm indiriliyor.
+  (Varyant seçimi CSS ile gizleyerek değil, matchMedia ile tek video
+   render edilerek yapılıyor — çift indirme yok.)
+  - prefers-reduced-motion açıkken video HİÇ indirilmiyor, doğrudan fabrika
+    hero'su açılıyor.
+  - Intro yalnızca ana sayfada var.
+  - iOS için `muted` hem property hem HTML attribute olarak elle yazılıyor
+    (React `muted` prop'unu attribute olarak DOM'a yazmaz, Safari attribute'a
+    bakabilir). Bu satırı silmeyin.
+
+
+═══════════════════════════════════════════════════════════════════════════
+4. GÖRÜNÜM VE İÇERİK EKSİKLERİ
+═══════════════════════════════════════════════════════════════════════════
+
+4.1 ANA SAYFA
+  - Hero masaüstünde güçlü. Mobilde fabrika binası geniş fotoğraf yüzünden
+    geri planda kalıyor; mobil için ayrı görsel veya farklı object-position.
+  - CTA metni "Bayilik için tıklayınız" yerine daha eylem odaklı olabilir:
+    "Bayilik başvurusu yap" / "Bayimiz olun".
+  - Fabrika tanıtım bölümü metin ağırlıklı ve zayıf kalıyor. Gerçek üretim
+    hattı fotoğrafı, konum etiketi, 3 adımlık üretim anlatısı veya doğrulanmış
+    rakamlar eklenmeli.
+  - "Neden cam şişe?" bölümü yok (metni SEO dosyasında hazır).
+
+4.2 ÜRÜN KARTLARI
+  - Kızılcık ürünündeki rozet başlığı aşağı itiyor; üç kartın başlıkları aynı
+    yatay çizgide değil. Çözüm: tüm kartlarda sabit rozet alanı bırakmak.
+  - Klasik şişe şeffaf olduğu için krem arka planda zayıf görünüyor.
+  - Şişelerin görünür ölçekleri tam eşit hissedilmiyor.
+  - Mobilde kart giriş animasyonu 140px mesafeden geliyor, fazla teatral.
+  - "Detay için tıklayın" metni daha açıklayıcı olabilir:
+    "Portakal gazozunu incele" gibi.
+
+4.3 ÜRÜNLERİN GÖRÜNÜRLÜĞÜ ANİMASYONA BAĞLI
+  Dosya: src/components/products/ProductCard.tsx
+  Kartlar opacity:0 ile render edilip görünür alana girince açılıyor. Normal
+  kullanımda çalışıyor, ancak JavaScript kapalıysa veya animasyon
+  başlatılamazsa ürünler görünmez kalabilir. Doğrusu: ürünleri varsayılan
+  görünür yapmak, animasyonu yalnızca istemci hazır olduğunda eklemek
+  (progressive enhancement).
+
+4.4 ÜRÜN DETAY SAYFASI
+  - "← Tüm ürünler" linki ile "TÜRKİYE'DE İLK VE TEK" rozeti ÜST ÜSTE BİNİYOR.
+    Görsel hata, kesin. Düzeltilmeli.
+  - Masaüstünde çok boşluk, mobilde şişe alanı gereğinden uzun.
+  - Şişe arkasındaki renkli halka ham duruyor.
+  - İçerik seyrek. Doğrulandıkça eklenecekler: hacim, içindekiler, besin
+    değerleri, koli adedi, raf ömrü, saklama koşulları, barkod, servis önerisi,
+    satış noktaları, bayilik/toplu sipariş CTA'sı.
+
+4.5 HAKKIMIZDA SAYFASI
+  Temiz ama düz. Eklenebilecekler: marka zaman çizelgesi (2019 kızılcık,
+  2025 ortaklık, 11 Temmuz 2026 fabrika açılışı), kurucu/ekip bölümü, üretim
+  süreci, gerçek üretim galerisi, sertifikalar, kapasite bilgileri, harita,
+  "Neden cam şişe?", Çankırı'ya katkı.
+  NOT: aynı fabrika görseli intro, hero ve hakkımızda sayfasında tekrarlanıyor.
+  Görsel çeşitliliği için gerçek iç mekân fotoğrafları gerekli
+  (uretim-01.jpg ... uretim-05.jpg pakete hiç eklenmedi, marka sahibinden
+  alınmalı — internette doğrulanabilir fotoğraf bulunamadı).
+
+4.6 BAYİLİK SAYFASI
+  Form düzgün görünüyor ama ticari güven içeriği yok. Eklenmeli:
+  kimler başvurabilir, hangi iller, başvurudan sonra ne olacak, değerlendirme
+  adımları, lojistik/teslimat modeli, alternatif iletişim, SSS, KVKK metni.
+  SEO dosyasında "Neden Çankırı Gazozu?" başlıklı 4 satış argümanı ve
+  9 ilin listesi hazır bekliyor.
+
+4.7 HENÜZ HİÇ OLMAYAN SAYFALAR (metinleri SEO dosyasında hazır)
+  - Hikâyemiz  (120 çeşit gazoz toplayan dükkândan fabrikaya; markanın en
+    güçlü içeriği, "çankırı gazozu kimdir" araması için)
+  - Sık Sorulan Sorular  (FAQPage şeması ile zengin sonuç şansı, rakip yok)
+  - İletişim  (footer'da başlık var, sayfa yok) + harita
+
+4.8 HEADER / MOBİL MENÜ
+  - Aktif sayfa göstergesi yok; aria-current="page" eklenmeli.
+  - Mobil menüde arka plan perdesi yok.
+  - Menü açıkken arka sayfa kaydırılabiliyor.
+  - Focus trap yok, Escape ile kapatma yok.
+  - Mobil menüye belirgin "Bayilik başvurusu" CTA'sı eklenebilir.
+  - Sayfa başında "İçeriğe geç" (skip link) yok.
+
+4.9 FOOTER
+  Eksikler: telefon, tam adres, Instagram, harita bağlantısı, gizlilik
+  politikası, KVKK aydınlatma metni, çerez politikası, iletişim sayfası,
+  resmî unvan. Footer'daki e-posta da doğrulanmamış .com alan adını kullanıyor.
+
+
+═══════════════════════════════════════════════════════════════════════════
+5. SEO DURUMU
+═══════════════════════════════════════════════════════════════════════════
+
+ÇALIŞANLAR:
+  - Sayfa başına canonical + tr/en hreflang (buildAlternates)
+  - sitemap.xml, robots.txt
+  - Organization + LocalBusiness Schema (layout)
+  - Product Schema (ürün sayfaları); `offers` bilerek eklenmedi — fiyat/stok
+    netleşmeden eklenirse Search Console hata üretir
+  - Yerelleştirilmiş title/description
+  - Her sayfada tek H1
+  - Görsellerde alt metin
+  - Ana sayfadan ürün sayfalarına HTML'de iç linkler mevcut
+
+DÜZELTİLMESİ GEREKENLER:
+  a) src/app/robots.ts — sadece VERCEL_ENV === 'production' üretim sayılıyor.
+     Vercel dışında yayınlanırsa robots BÜTÜN TARAMAYI ENGELLER. Yayın
+     platformu kesinleşince bu kontrol sağlamlaştırılmalı.
+  b) src/app/sitemap.ts — tüm URL'lerde lastModified olarak new Date()
+     kullanılıyor. Her build'de tüm site değişmiş gibi sinyal gider.
+     Gerçek içerik tarihleri kullanılmalı ya da lastModified kaldırılmalı.
+  c) Logo ~518 KB PNG. Header'da next/image optimize ediyor ama favicon ve
+     apple-touch-icon için ayrı boyutlar üretilmeli:
+     SVG logo, 32x32 favicon, 180x180 apple touch, 192x192 ve 512x512.
+     Ayrıca hem Next varsayılan favicon.ico hem /logo.png tanımlı — çakışıyor.
+
+YAPILMASI GEREKEN DIŞ İŞLER:
+  - Google Business Profile kaydı (fabrika adresiyle) — yerel aramada en hızlı
+    kazanç
+  - Google Search Console + Analytics kurulumu
+  - Fabrika açılışını haber yapan sitelere (trthaber, cankirihaber.net,
+    haberci18.com, cankirigazete.com, bulten18.com, haber18.com) ulaşıp link
+    eklettirmek — en ucuz otorite kazancı
+
+
+═══════════════════════════════════════════════════════════════════════════
+6. ERİŞİLEBİLİRLİK
+═══════════════════════════════════════════════════════════════════════════
+
+OLUMLU: form etiketleri, düğme adları, alt metinler, klavye odak stilleri,
+prefers-reduced-motion desteği, düzgün başlık sıralaması.
+
+YAPILACAK:
+  - Skip-to-content bağlantısı
+  - Intro perdesindeki role="presentation" kaldırılmalı (içinde düğme var)
+  - Ürün görünürlüğü whileInView'a bağlı olmamalı
+  - Dil değiştiricide aria-current="true" yerine aria-current="page"
+  - Mobil menüde focus trap ve kapanınca odağın düğmeye dönmesi
+  - Hareket azaltma tercihinde ürün kartları anında görünür olmalı
+
+
+═══════════════════════════════════════════════════════════════════════════
+7. KOD TEMİZLİĞİ
+═══════════════════════════════════════════════════════════════════════════
+
+  - src/data/hero.ts içindeki eski dünya/Türkiye/Çankırı/Orta katman verileri
+    ve ZOOM_FACTOR artık kullanılmıyor (video intro'ya geçildi). Katmanlardan
+    yalnızca sonuncusu (factory) hâlâ hero arka planı ve /hakkimizda için
+    kullanılıyor.
+  - HeroIntro yalnızca fabrika posterine ihtiyaç duyduğu halde LayerVisual
+    altyapısını client bundle'a dahil ediyor.
+  - LayerVisual içindeki prosedürel SVG placeholder'lar artık ölü kod
+    (tüm görseller mevcut). public/hero/*.jpg görsellerini SİLMEYİN.
+  - src/components/layout/LanguageSwitcher.tsx içindeki @ts-expect-error
+    yerine tam tipli rota çözümü kurulabilir.
+  - public/ altındaki Next varsayılan örnek dosyaları (file.svg, globe.svg,
+    next.svg, vercel.svg, window.svg) kullanılmıyor, silinebilir.
+  - Bayilik formu için otomatik test yok. Ayrıca şu senaryolar test edilmeli:
+    video yüklenmezse, e-posta servisi kapanırsa, ürün detayında dil
+    değiştirilirse.
+  - CI'a bundle analyzer ve Lighthouse kontrolü eklenebilir.
+
+DAHA ÖNCE YAKALANIP DÜZELTİLMİŞ HATALAR (tekrarlanmasın):
+  1. Layout'taki alternates alt sayfalara miras kalıyordu; tüm sayfalar ana
+     sayfayı canonical gösteriyordu → hiçbiri indekslenmezdi.
+  2. Ürün kartındaki detay linkleri yalnızca kart açıkken DOM'a giriyordu →
+     ana sayfadan ürün sayfalarına HTML'de hiç iç link yoktu.
+  3. Ürünlerde doğrulanmamış "250 ml" bilgisi yazıyordu → kaldırıldı.
+  4. motion'ın useReducedMotion'ı hydration mismatch üretiyordu →
+     src/hooks/usePrefersReducedMotion.ts (useSyncExternalStore) yazıldı.
+  5. Intro perdesi AnimatePresence ile koşullu render ediliyordu; çıkış
+     animasyonu tamamlanmazsa üstte kalıp tüm tıklamaları yutuyordu →
+     perde artık hep DOM'da, bitince pointer-events-none + inert.
+
+
+═══════════════════════════════════════════════════════════════════════════
+8. ÖNERİLEN ÇALIŞMA SIRASI
+═══════════════════════════════════════════════════════════════════════════
+
+BİRİNCİ AŞAMA — yayına çıkmadan önce
+  1. Bayilik başvurularını veritabanına kaydet
+  2. Resend ve gerçek alıcı e-postasını yapılandır
+  3. KVKK / gizlilik metinlerini ekle
+  4. Alan adı, telefon, tam adres, sosyal medya, koordinatı kesinleştir
+  5. Intro videosunu küçült (ve istenirse oturumda bir kez oynat)
+  6. .com / .com.tr kararını verip canonical ve e-postaları düzelt
+  7. "Türkiye'de ilk ve tek" iddiasını doğrula
+  8. Intro emniyet zamanlayıcısını ilerleme bazlı yap
+  9. Ürün detayındaki rozet çakışmasını düzelt
+
+İKİNCİ AŞAMA — görsel kalite ve dönüşüm
+  1. Hakkımızda'ya gerçek fabrika/üretim galerisi
+  2. Fabrika tanıtım bölümünü görselleştir
+  3. Bayilik sürecini ve avantajlarını anlat
+  4. Mobil hero kadrajını düzelt
+  5. Ürün kartlarının hizası ve CTA metinleri
+  6. Ürün detaylarına doğrulanmış ürün bilgileri
+  7. Footer'ı gerçek iletişim ve yasal bağlantılarla tamamla
+  8. Hikâyemiz ve SSS sayfalarını aç (metinler hazır)
+
+ÜÇÜNCÜ AŞAMA — son rötuşlar
+  1. Mobil menü erişilebilirliği
+  2. Skip link ve aktif navigasyon
+  3. Animasyonları progressive enhancement haline getir
+  4. Eski intro kodlarını temizle
+  5. Lighthouse ve gerçek cihaz performans testi
+  6. İngilizce metinleri profesyonel kontrolden geçir
+
+
+═══════════════════════════════════════════════════════════════════════════
+9. İÇERİK KAYNAKLARI
+═══════════════════════════════════════════════════════════════════════════
+
+Hazır yazılmış SEO metinleri ve marka hikâyesi (Yusuf'ta):
+    YusufOS / 300-Projects / Cankiri-Gazozu-Website / SEO-Metinleri.md
+
+İçinde hazır bekleyenler: ana sayfa metinleri, Hikâyemiz sayfasının tamamı,
+fabrika sayfası (doğrulanmış rakamlarla), üç ürünün SEO metinleri, bayilik
+sayfası ikna metinleri, SSS soruları, JSON-LD şemaları, teknik SEO listesi.
+
+Görsel paketi ve telif notları:
+    Desktop / Cankiri-Gazozu-Gorseller / README-GORSELLER.txt
+
+ÖNEMLİ TELİF NOTLARI:
+  - Fabrika görseli resmî Instagram videosundan alınmış gerçek drone karesi.
+    Web sitesinde yayını için hak sahibinden izin teyit edilmeli.
+  - Uydu katmanları Esri World Imagery kaynaklı; atıf ve kullanım koşulları
+    kontrol edilmeli. Dünya görseli NASA (kamu malı).
+  - Üç ürün PNG'si, resmî ürün fotoğrafı referans alınarak hazırlanmış
+    AI destekli ayrıştırma taslağıdır. Etiket yazıları birebir baskı dosyası
+    DEĞİLDİR. Ticari yayın öncesi gerçek stüdyo çekimleriyle değiştirilmeli.
+
+
+═══════════════════════════════════════════════════════════════════════════
+GENEL DEĞERLENDİRME
+═══════════════════════════════════════════════════════════════════════════
+
+Site görsel olarak iyi bir temele sahip ve "yerel ama çağdaş marka" hissini
+veriyor. Masaüstü ve mobil tasarım bozulmuyor; renkler, tipografi ve şişe
+sunumları tutarlı. Türkçe ve İngilizce sayfalar 1440 px masaüstünde ve 390 px
+mobilde test edildi; yatay taşma, kırık istek veya konsol hatası görülmedi.
+
+Ancak şu haliyle tamamen yayına hazır değil. En büyük eksik tasarım değil;
+sitenin gerçek bir ticari işletme gibi güvenilir çalışmasını sağlayacak içerik
+ve altyapı katmanı. Önce başvuru kaybı riskini, doğrulanmamış firma
+bilgilerini ve ağır introyu çözmek; ardından fabrika hikâyesi ve ürün
+içerikleriyle siteyi zenginleştirmek en doğru sıra.

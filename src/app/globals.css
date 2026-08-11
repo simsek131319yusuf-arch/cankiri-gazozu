@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Marka paleti */
+  --color-paper: #fbf6ec;
+  --color-paper-2: #f3ead8;
+  --color-ink: #14100c;
+  --color-ink-2: #3c3227;
+  --color-muted: #6f6252;
+
+  --color-cornel: #b31f2e;
+  --color-cornel-light: #ff6b7a;
+  --color-classic: #1e7a55;
+  --color-classic-light: #7fd6ae;
+  --color-orange: #f07e13;
+  --color-orange-light: #ffb347;
+  --color-gold: #d8a93b;
+
+  --color-night: #05070d;
+  --color-night-2: #0c1424;
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-night);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* İntro açıkken arka planın kaymasını engelle */
+body[data-intro="running"] {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--color-cornel);
+  color: var(--color-paper);
+}
+
+/* Hareket hassasiyeti olan kullanıcılar için animasyonları kapat */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}

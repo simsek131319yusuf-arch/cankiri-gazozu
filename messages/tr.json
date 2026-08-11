@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "home": {
+      "title": "Çankırı Gazozu | Çankırı'nın Kendi Gazoz Fabrikası",
+      "description": "Çankırı Orta'daki fabrikamızda geleneksel tarifle üretilen Çankırı Gazozu. Sade, portakallı ve Türkiye'de ilk kez üretilen kızılcıklı gazoz. Bayilik başvurusu için tıklayın."
+    },
+    "about": {
+      "title": "Çankırı Gazoz Fabrikası | Üretim ve Hikâyemiz",
+      "description": "Çankırı'nın Orta ilçesindeki gazoz fabrikamızda üretim nasıl yapılıyor? Çankırı Gazozu'nun kuruluş hikâyesi, geleneksel üretim yöntemi ve kızılcıklı gazozun doğuşu."
+    },
+    "products": {
+      "title": "Ürünlerimiz | Çankırı Gazozu Çeşitleri — Cam Şişe",
+      "description": "Kızılcık, klasik ve portakal aromalı Çankırı Gazozu çeşitleri. Hepsi cam şişede, Çankırı'daki kendi fabrikamızda üretiliyor."
+    },
+    "dealership": {
+      "title": "Gazoz Bayilik Başvurusu | Çankırı Gazozu",
+      "description": "Çankırı Gazozu bayisi olun. Şehrinizde satış yapmak için bayilik başvuru formunu doldurun, ekibimiz sizi arasın."
+    }
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "about": "Fabrikamız",
+    "dealership": "Bayilik",
+    "contact": "İletişim",
+    "menu": "Menü",
+    "close": "Kapat"
+  },
+  "hero": {
+    "skip": "Geç",
+    "eyebrow": "Çankırı · Orta",
+    "title": "Çankırı Gazozu",
+    "subtitle": "Çankırı'nın kendi toprağında, kendi fabrikasında üretilen gazoz. Geleneksel tarif, cam şişe, değişmeyen tat.",
+    "cta": "Bayilik için tıklayınız",
+    "secondaryCta": "Ürünleri gör",
+    "scroll": "Aşağı kaydır"
+  },
+  "products": {
+    "eyebrow": "Ürünlerimiz",
+    "title": "Üç şişe, üç ayrı hikâye",
+    "subtitle": "Şişeye dokunun, tadın hikâyesini anlatalım.",
+    "categoryTitle": "Üç Aroma, Tek Şişe: Cam",
+    "categoryIntro": "Ürün sayısını çoğaltmak kolaydır. Zor olan, her birinin arkasında durabilmektir. Bu yüzden şu an rafta üç ürünümüz var: Kızılcık, Klasik ve Portakal. Üçü de cam şişede, üçü de Çankırı'da üretiliyor.",
+    "tapHint": "Detay için tıklayın",
+    "closeHint": "Kapatmak için tıklayın",
+    "detail": "Ürün sayfası",
+    "volume": "{volume} ml · cam şişe",
+    "packaging": "Ambalaj",
+    "flavorLabel": "Aroma",
+    "otherProducts": "Diğer ürünlerimiz",
+    "soon": "Yakında",
+    "backToProducts": "Tüm ürünler"
+  },
+  "about": {
+    "eyebrow": "Fabrikamız",
+    "title": "Çankırı'da üretiliyor, Çankırı'da şişeleniyor",
+    "body": "Çankırı Gazozu, Çankırı'nın Orta ilçesindeki kendi fabrikasında üretiliyor. Suyundan şişesine kadar üretimin her aşaması burada gerçekleşiyor. Ne fason üretim var, ne başka şehirden gelen bir hat — bu gazoz gerçekten Çankırı'nın.",
+    "cta": "Fabrikamızı tanıyın",
+    "page": {
+      "title": "Çankırı Gazoz Fabrikası",
+      "lead": "Çankırı'nın Orta ilçesinde kurulu fabrikamızda, gazoz hâlâ bildiğiniz gibi üretiliyor: cam şişede, geleneksel tarifle, acele etmeden.",
+      "sections": [
+        {
+          "heading": "Çankırı'da bir gazoz fabrikası",
+          "body": "Çankırı Gazozu, adını taşıdığı şehirde üretiliyor. Fabrikamız Çankırı'nın Orta ilçesinde; şişeleme, karbonatlama ve etiketleme dahil üretimin tamamı burada yapılıyor. Bugün pek çok yerel marka üretimini başka şehirlere yaptırırken biz üretimi Çankırı'da tuttuk. Bunun sebebi sadece duygusal değil: gazozun tadı, kullanılan suyla doğrudan bağlantılı."
+        },
+        {
+          "heading": "Geleneksel üretim, değişmeyen tarif",
+          "body": "Gazozumuz kurulduğumuz günden bu yana aynı tarifle üretiliyor. Cam şişeyi bırakmadık; cam, gazozun gazını ve aromasını plastikten çok daha iyi koruyor. Şişeler dolumdan önce yıkanıp kontrol ediliyor, dolum sonrası her parti kontrol edilerek sevk ediliyor."
+        },
+        {
+          "heading": "Kızılcıklı gazoz: Çankırı'dan çıkan bir ilk",
+          "body": "Kızılcık, Çankırı'nın kendi toprağında yetişen ve şehirle özdeşleşmiş bir meyve. Bu meyveden gazoz üretme fikri buradan doğdu ve kızılcıklı gazoz ilk kez bizim fabrikamızda üretildi. Kızılcığın doğal ekşiliği gazozun tatlılığını dengeliyor; ortaya klasik meyveli gazozlara benzemeyen, tamamen kendine ait bir tat çıkıyor."
+        },
+        {
+          "heading": "Nerede bulunur?",
+          "body": "Çankırı Gazozu, Çankırı merkez ve ilçelerindeki marketler, restoranlar ve büfelerde satılıyor. Ürünlerimizi kendi şehrinizde satmak isterseniz bayilik başvuru formunu doldurmanız yeterli; ekibimiz sizi arayıp koşulları anlatıyor."
+        }
+      ]
+    }
+  },
+  "dealership": {
+    "eyebrow": "Bayilik",
+    "title": "Çankırı Gazozu bayisi olun",
+    "subtitle": "Şehrinizde Çankırı Gazozu satmak istiyorsanız formu doldurun, ekibimiz en kısa sürede sizi arasın.",
+    "form": {
+      "fullName": "Ad Soyad",
+      "company": "Firma Adı",
+      "city": "Şehir",
+      "businessLine": "Mevcut İş Kolu",
+      "businessLinePlaceholder": "Market, toptancı, restoran...",
+      "phone": "Telefon Numarası",
+      "email": "E-posta (isteğe bağlı)",
+      "message": "Eklemek istedikleriniz (isteğe bağlı)",
+      "submit": "Başvuruyu Gönder",
+      "submitting": "Gönderiliyor...",
+      "required": "Bu alan zorunlu",
+      "invalidPhone": "Geçerli bir telefon numarası girin",
+      "invalidEmail": "Geçerli bir e-posta girin",
+      "success": "Başvurunuz bize ulaştı. En kısa sürede sizi arayacağız.",
+      "error": "Başvuru gönderilemedi. Lütfen tekrar deneyin ya da bizi arayın."
+    }
+  },
+  "footer": {
+    "tagline": "Çankırı'nın kendi gazozu.",
+    "quickLinks": "Sayfalar",
+    "contact": "İletişim",
+    "address": "Orta, Çankırı",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "common": {
+    "language": "Dil",
+    "notFound": "Sayfa bulunamadı",
+    "notFoundBody": "Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.",
+    "backHome": "Ana sayfaya dön"
+  }
+}
