@@ -1,39 +1,99 @@
 {
   "meta": {
     "home": {
-      "title": "Çankırı Gazozu | The Soda Factory of Çankırı",
-      "description": "Traditionally produced soda from our factory in Orta, Çankırı. Classic, orange and the first cornelian cherry soda ever made in Türkiye. Apply for dealership."
+      "title": "Çankırı Gazozu | Cornelian Cherry, Classic and Orange in Glass",
+      "description": "The local soda brand of Çankırı. Cornelian cherry, classic and orange, all in glass bottles. Produced in our own factory in Orta OSB. Dealership applications are open."
     },
     "about": {
-      "title": "Our Soda Factory in Çankırı | Production & Story",
-      "description": "How soda is produced at our factory in Orta, Çankırı. The story of Çankırı Gazozu, our traditional production method and the birth of cornelian cherry soda."
+      "title": "Our Factory | Çankırı Soda Production Plant — Orta OSB",
+      "description": "Our soda factory in the Orta Organised Industrial Zone of Çankırı. A capacity of 36,000 bottles per hour and the first factory of Orta OSB."
     },
     "products": {
       "title": "Our Products | Çankırı Gazozu Range — Glass Bottle",
       "description": "Cornelian cherry, classic and orange Çankırı Gazozu varieties. All in glass bottles, produced in our own factory in Çankırı."
     },
     "dealership": {
-      "title": "Dealership Application | Çankırı Gazozu",
-      "description": "Become a Çankırı Gazozu dealer. Fill in the application form and our team will call you back."
+      "title": "Soda Dealership | Çankırı Gazozu Distribution Application",
+      "description": "Dealership and distribution opportunities with Çankırı Gazozu. We are growing our network across the Black Sea and Central Anatolia regions. Apply using the form."
+    },
+    "story": {
+      "title": "Our Story | Çankırı Gazozu — From a Shop to a Factory",
+      "description": "The story that runs from a small shop holding 120 kinds of local soda to our own factory in Orta OSB, Çankırı. This is how Çankırı Gazozu was born."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Where is Çankırı Gazozu produced, which flavours are there, why glass bottles, how to become a dealer? Answers to the most common questions."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact details for Çankırı Gazozu. Our factory is in the Organised Industrial Zone of Orta, Çankırı."
+    },
+    "privacy": {
+      "title": "Privacy and Cookie Policy",
+      "description": "How personal data and cookies are handled on the Çankırı Gazozu website."
+    },
+    "kvkk": {
+      "title": "Personal Data Protection Notice",
+      "description": "Information notice under Turkish Personal Data Protection Law no. 6698 (KVKK) for Çankırı Gazozu."
     }
   },
   "nav": {
     "home": "Home",
     "products": "Products",
     "about": "Our Factory",
+    "story": "Our Story",
     "dealership": "Dealership",
+    "faq": "FAQ",
     "contact": "Contact",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "dealerCta": "Apply for dealership"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "breadcrumb": "Breadcrumb"
   },
   "hero": {
     "skip": "Skip",
     "eyebrow": "Çankırı · Orta",
     "title": "Çankırı Gazozu",
+    "slogan": "Known for its dust and its salt. Now for its soda.",
     "subtitle": "Soda made in Çankırı, in its own factory, on its own soil. Traditional recipe, glass bottle, unchanged taste.",
     "cta": "Apply for dealership",
     "secondaryCta": "See the products",
     "scroll": "Scroll down"
+  },
+  "home": {
+    "whyGlass": {
+      "eyebrow": "Why glass?",
+      "title": "Half the taste comes from the bottle",
+      "paragraphs": [
+        "Glass adds nothing of its own. It does not absorb aroma, does not interfere with taste and does not react to heat. Carbonation holds on longer in glass — that sharpness in the first sip stays with you until the last.",
+        "Plastic is cheap, easy and fast. We chose the harder way, because we know why the soda you drank as a child tasted so good.",
+        "There is one more thing: glass can be recycled endlessly. Insisting on glass also means less waste."
+      ],
+      "points": [
+        {"title": "No aroma loss", "body": "The taste comes from the recipe, not from the packaging."},
+        {"title": "Holds carbonation", "body": "Glass keeps the fizz alive far longer."},
+        {"title": "Endlessly recyclable", "body": "Glass can be reused again and again without losing quality."}
+      ]
+    },
+    "factory": {
+      "cta": "See our factory",
+      "stats": [
+        {"value": "36,000", "label": "bottles per hour"},
+        {"value": "4,500 m²", "label": "indoor production area"},
+        {"value": "First", "label": "the first factory of Orta OSB"}
+      ],
+      "steps": [
+        {"title": "Bottle washing", "body": "Every glass bottle is washed and inspected before filling."},
+        {"title": "Filling and capping", "body": "Carbonation and filling run on a single, controlled line."},
+        {"title": "Labelling and dispatch", "body": "Labelling, palletising and batch control all happen under one roof."}
+      ],
+      "locationLabel": "Orta OSB · Çankırı"
+    }
   },
   "products": {
     "eyebrow": "Our Products",
@@ -41,9 +101,9 @@
     "subtitle": "Tap a bottle and we will tell you its story.",
     "categoryTitle": "Three Aromas, One Bottle: Glass",
     "categoryIntro": "Adding more products is easy. Standing behind every one of them is not. That is why there are three on the shelf right now: Cornelian Cherry, Classic and Orange. All three in glass bottles, all three produced in Çankırı.",
-    "tapHint": "Tap for details",
-    "closeHint": "Tap to close",
-    "detail": "Product page",
+    "tapHint": "Show product details",
+    "closeHint": "Hide details",
+    "detail": "Open the {name} page",
     "volume": "{volume} ml · glass bottle",
     "packaging": "Packaging",
     "flavorLabel": "Aroma",
@@ -51,18 +111,29 @@
     "soon": "Coming soon",
     "backToProducts": "All products"
   },
+  "productPage": {
+    "tasteTitle": "What does it taste like?",
+    "pairingTitle": "What does it go with?",
+    "infoTitle": "Product information",
+    "storageLabel": "Storage",
+    "storageValue": "In a cool, dry place, away from direct sunlight",
+    "pendingInfo": "Volume, units per case, shelf life, ingredients and nutritional values will be published here once they are verified from the packaging.",
+    "dealerCtaTitle": "Looking to buy wholesale?",
+    "dealerCtaBody": "Fill in the dealership form to sell Çankırı Gazozu in your city and our team will call you back.",
+    "dealerCtaButton": "Apply for dealership"
+  },
   "about": {
     "eyebrow": "Our Factory",
     "title": "Made in Çankırı, bottled in Çankırı",
     "body": "Çankırı Gazozu is produced in its own factory in the Orta district of Çankırı. Every stage of production, from the water to the bottle, happens here. No contract manufacturing, no production line shipped in from another city — this soda really is Çankırı's.",
     "cta": "Get to know our factory",
     "page": {
-      "title": "Our Soda Factory in Çankırı",
+      "title": "The First Factory of Orta OSB",
       "lead": "At our factory in Orta, Çankırı, soda is still made the way you remember it: in glass bottles, with a traditional recipe, without rushing.",
       "sections": [
         {
-          "heading": "A soda factory in Çankırı",
-          "body": "Çankırı Gazozu is produced in the city whose name it carries. Our factory is in the Orta district of Çankırı, and the entire production — bottling, carbonation and labelling — happens here. While many local brands moved production to other cities, we kept ours in Çankırı. The reason is not only sentimental: the taste of soda is directly tied to the water it is made with."
+          "heading": "An empty plot, a full dream",
+          "body": "When the Organised Industrial Zone in Orta, Çankırı was founded, 53 plots were planned across roughly a thousand decares. But what makes an industrial zone real is not the plots — it is the first chimney. That first chimney was ours."
         },
         {
           "heading": "Traditional production, unchanged recipe",
@@ -70,20 +141,211 @@
         },
         {
           "heading": "Cornelian cherry soda: a first from Çankırı",
-          "body": "The cornelian cherry grows in Çankırı's own soil and has become identified with the city. The idea of making soda from this fruit was born here, and cornelian cherry soda was produced for the first time in our factory. The natural tartness of the fruit balances the sweetness of the soda, creating a taste unlike any classic fruit soda."
+          "body": "The cornelian cherry grows in Çankırı's own soil and has become identified with the city. The idea of making soda from this fruit was born here. The natural tartness of the fruit balances the sweetness of the soda, creating a taste unlike any classic fruit soda."
+        }
+      ],
+      "facts": {
+        "title": "Plant at a glance",
+        "items": [
+          {"label": "Location", "value": "Orta OSB, Orta / Çankırı"},
+          {"label": "Indoor area", "value": "~4,500 m²"},
+          {"label": "Capacity", "value": "36,000 bottles per hour"},
+          {"label": "Employment", "value": "50 people in the first phase, 200 at full capacity"},
+          {"label": "Opening", "value": "11 July 2026"},
+          {"label": "Status", "value": "The first factory of Orta OSB"}
+        ]
+      },
+      "line": {
+        "title": "The production line",
+        "body": "From bottle washing to filling and capping, from labelling to palletising, the entire process runs under one roof. The glass bottle line moves under control from the washing of each bottle to its filling."
+      },
+      "quotes": [
+        {
+          "text": "The dream we held for years — 'could there ever be production in Orta?' — became real today.",
+          "author": "Ömer Bezci",
+          "role": "Mayor of Orta"
         },
         {
-          "heading": "Where to find us",
-          "body": "Çankırı Gazozu is sold in markets, restaurants and kiosks across Çankırı and its districts. If you would like to sell our products in your own city, fill in the dealership form and our team will call you to explain the terms."
+          "text": "The investment these lands have waited years for came to life today. Our people will no longer have to move to other cities to find work.",
+          "author": "Kaptan Mustafa Can",
+          "role": "Investor"
         }
-      ]
+      ],
+      "closing": {
+        "title": "Where to find us",
+        "body": "Çankırı Gazozu is sold in markets, restaurants and kiosks across our active regions. If you would like to sell our products in your own city, fill in the dealership form and our team will call you to explain the terms.",
+        "cta": "Apply for dealership"
+      }
     }
+  },
+  "story": {
+    "eyebrow": "Our Story",
+    "title": "It Started in a Shop Holding 120 Kinds of Soda",
+    "lead": "Çankırı Gazozu was not born in a marketing meeting. It was born in a shop of about twenty square metres.",
+    "sections": [
+      {
+        "heading": "The curiosity of a collector",
+        "body": "When our founder Aybars Şentürk began collecting local sodas from every corner of Türkiye, he was not trying to build a brand. He was curious. Which city produced which soda, where each recipe came from, how old each bottle was. Close to 120 varieties came together in that shop, some of them in bottles seventy years old. Anyone who knew the soda map of Türkiye that closely would eventually ask the same question: so where is Çankırı's soda?"
+      },
+      {
+        "heading": "We started with cornelian cherry",
+        "body": "We found the answer in Çankırı's own soil: the cornelian cherry. In 2019 we produced a soda from it. It was not an easy choice — the fruit is tart, hard to balance and far from a familiar soda aroma. But that is exactly why it was right. We were looking for a taste no other city could copy, and it was already here."
+      },
+      {
+        "heading": "A road not walked alone",
+        "body": "A brand cannot walk from a shop to a factory on its own. In January 2025, businesspeople Kaptan Mustafa Can and Naci Aydoğan joined the journey — people who had earned their success outside Çankırı and wanted to invest back home. In October 2025 we laid the foundation of the factory in Orta OSB. On 11 July 2026 it officially opened."
+      },
+      {
+        "heading": "What comes next",
+        "body": "Our goal is not only to sell soda. Çankırı's salted preserves, the pears of Orta, the unheard flavours of this soil — each of them could have a bottle, a package and a brand. We started with soda."
+      }
+    ],
+    "quotes": [
+      {
+        "text": "Before we bring a soda in here, I always research its history and its ingredients. I do not bring in a soda I would not drink myself.",
+        "author": "Aybars Şentürk",
+        "role": "Founder"
+      },
+      {
+        "text": "It is not a feeling you can put into words, and not one felt often in Çankırı. Building a brand here and turning it into a factory and a national value is not easy.",
+        "author": "Aybars Şentürk",
+        "role": "Founder"
+      }
+    ],
+    "timeline": {
+      "title": "A short history",
+      "items": [
+        {"year": "2019", "title": "Cornelian cherry soda", "body": "The first soda made from Çankırı's cornelian cherry reached the shelf."},
+        {"year": "January 2025", "title": "Partnership", "body": "Kaptan Mustafa Can and Naci Aydoğan joined the brand."},
+        {"year": "October 2025", "title": "Groundbreaking", "body": "The foundation of the factory was laid in Orta OSB."},
+        {"year": "11 July 2026", "title": "Factory opening", "body": "The first factory of Orta OSB started production."}
+      ]
+    },
+    "cta": {
+      "title": "See the factory too",
+      "body": "The rest of the story continues in Orta OSB, on our own production line.",
+      "button": "See our factory"
+    }
+  },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "Good to know",
+    "lead": "The questions we are asked most about Çankırı Gazozu, and their answers.",
+    "items": [
+      {
+        "question": "Where is Çankırı Gazozu produced?",
+        "answer": "In our own factory in the Organised Industrial Zone of Orta, Çankırı. The plant opened in July 2026 and is the first factory of Orta OSB."
+      },
+      {
+        "question": "Which flavours are available?",
+        "answer": "Three products are on sale right now: Cornelian Cherry, Classic and Orange. All of them in glass bottles."
+      },
+      {
+        "question": "What makes the cornelian cherry soda special?",
+        "answer": "Cornelian cherry is a difficult fruit; its tartness dominates and balancing it takes skill. When we produced this aroma in 2019 there was nothing like it in Türkiye."
+      },
+      {
+        "question": "Why do you only use glass bottles?",
+        "answer": "Glass does not absorb aroma or interfere with taste. It holds carbonation longer. It can also be recycled endlessly."
+      },
+      {
+        "question": "Where can I buy it?",
+        "answer": "From our dealers, markets and restaurants across our active regions."
+      },
+      {
+        "question": "I want to become a dealer, what should I do?",
+        "answer": "Fill in the form on our dealership page and our team will review your application and get in touch."
+      },
+      {
+        "question": "Will there be new products?",
+        "answer": "We are working on flavours specific to Çankırı. Local products are among our plans."
+      }
+    ],
+    "cta": {
+      "title": "Question not answered?",
+      "body": "Write to us and we will get back to you shortly.",
+      "button": "Get in touch"
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Get in touch",
+    "lead": "Our factory is in the Organised Industrial Zone of Orta, Çankırı. You can reach us through the channels below for dealership, wholesale and everything else.",
+    "addressTitle": "Address",
+    "phoneTitle": "Phone",
+    "emailTitle": "Email",
+    "socialTitle": "Social media",
+    "mapLink": "Show on map",
+    "dealerTitle": "Dealership application",
+    "dealerBody": "If you want to sell Çankırı Gazozu in your city, fill in the application form and our team will call you.",
+    "dealerButton": "Apply for dealership",
+    "pending": "This information will be published soon."
   },
   "dealership": {
     "eyebrow": "Dealership",
-    "title": "Become a Çankırı Gazozu dealer",
+    "title": "Become a Çankırı Gazozu Dealer",
     "subtitle": "If you want to sell Çankırı Gazozu in your city, fill in the form and our team will call you shortly.",
+    "why": {
+      "title": "Why Çankırı Gazozu?",
+      "items": [
+        {
+          "title": "A product that stands out",
+          "body": "Cornelian cherry soda draws attention on the shelf and makes customers ask about it — the product does the selling for you."
+        },
+        {
+          "title": "The glass bottle difference",
+          "body": "Cafés, restaurants and barbecue venues are looking for glass. You are not competing in the plastic category."
+        },
+        {
+          "title": "The local production wave",
+          "body": "As consumers turn towards local brands, you are selling a product with a hometown story."
+        },
+        {
+          "title": "A producer with its own factory",
+          "body": "No contract manufacturing. Supply chain, capacity and delivery are under our control."
+        }
+      ]
+    },
+    "regions": {
+      "title": "Our active regions",
+      "note": "We also review applications from other provinces — our goal is all 81."
+    },
+    "process": {
+      "title": "What happens after you apply?",
+      "steps": [
+        {"title": "We receive your application", "body": "The moment the form reaches us it is recorded and our team is notified."},
+        {"title": "Initial review", "body": "We review the existing dealer network in your city and your line of business."},
+        {"title": "A call", "body": "We call you to discuss the terms, ordering and the delivery model."},
+        {"title": "First shipment", "body": "Once we agree, we plan your first order and dispatch it."}
+      ]
+    },
+    "faq": {
+      "title": "Dealership questions",
+      "items": [
+        {
+          "question": "Who can apply?",
+          "answer": "Grocery stores, wholesalers, restaurants, cafés, barbecue venues and distribution companies can all apply."
+        },
+        {
+          "question": "Which provinces do you accept applications from?",
+          "answer": "Our active regions are the priority, but we also review applications from other provinces."
+        },
+        {
+          "question": "Is there a fee to apply?",
+          "answer": "No. The application and review process is free of charge."
+        },
+        {
+          "question": "How soon do you respond?",
+          "answer": "We get in touch as soon as we have reviewed your application."
+        }
+      ]
+    },
+    "alt": {
+      "title": "Would you rather not use the form?",
+      "body": "You can also write to us directly about dealership and wholesale."
+    },
     "form": {
+      "title": "Application form",
       "fullName": "Full Name",
       "company": "Company Name",
       "city": "City",
@@ -95,17 +357,108 @@
       "submit": "Send Application",
       "submitting": "Sending...",
       "required": "This field is required",
+      "tooLong": "This field can be at most {max} characters",
       "invalidPhone": "Enter a valid phone number",
       "invalidEmail": "Enter a valid email address",
+      "consent": "I consent to my personal data being processed for the purpose of evaluating my dealership application.",
+      "consentLinkText": "Personal Data Protection Notice",
+      "consentRequired": "You need to give consent to continue",
       "success": "We received your application. We will call you shortly.",
-      "error": "The application could not be sent. Please try again or call us."
+      "error": "The application could not be sent. Please try again or send us an email.",
+      "rateLimited": "Too many applications have been sent. Please try again a little later.",
+      "successTitle": "Application received",
+      "backHome": "Back to home"
+    }
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "privacy": {
+      "title": "Privacy and Cookie Policy",
+      "lead": "This policy explains which data is processed when you visit the Çankırı Gazozu website and how that data is protected.",
+      "sections": [
+        {
+          "heading": "What data do we collect?",
+          "body": "On this site we only collect data through the dealership application form. The name, company name, city, line of business, phone number, optional email address and message you share in the form are sent to us. There is no membership, ordering or payment on this site."
+        },
+        {
+          "heading": "How do we use it?",
+          "body": "We use the information you share only to evaluate your dealership application, to contact you and to inform you about your request. This information is not sold or transferred to third parties for marketing purposes."
+        },
+        {
+          "heading": "Who do we share it with?",
+          "body": "Limited data sharing may take place with the suppliers we work with, such as our email infrastructure provider, so that your application can reach us. Such sharing happens only to deliver the service and only to the extent necessary."
+        },
+        {
+          "heading": "How long do we keep it?",
+          "body": "Your application is kept throughout the evaluation process and any resulting commercial relationship. If the process does not proceed, records are deleted after a reasonable period. You may request deletion of your record at any time."
+        },
+        {
+          "heading": "Cookies",
+          "body": "This site does not use advertising or tracking cookies. Technical data needed for the site to work — such as your language preference and whether the intro video has already been shown in this session — is kept in your browser's own storage and is not sent to us. You can clear this data from your browser settings at any time."
+        },
+        {
+          "heading": "Security",
+          "body": "The information you send through the form is transmitted over an encrypted connection (HTTPS) and protected against unauthorised access."
+        },
+        {
+          "heading": "Your rights and contact",
+          "body": "Details of your rights to access, correct and request deletion of your personal data are set out in the Personal Data Protection Notice. You can reach us through the channels on our contact page."
+        }
+      ]
+    },
+    "kvkk": {
+      "title": "Personal Data Protection Notice",
+      "lead": "This notice concerns personal data processed through the dealership application form under Turkish Personal Data Protection Law no. 6698 (\"KVKK\").",
+      "sections": [
+        {
+          "heading": "Data controller",
+          "body": "Your personal data is processed by Çankırı Gazozu as data controller, within the scope described below. Our contact details are available on the contact page."
+        },
+        {
+          "heading": "Personal data processed",
+          "body": "Identity data (first name, surname), contact data (phone number, email address, city) and customer transaction data (company name, line of business, the message you send through the form)."
+        },
+        {
+          "heading": "Purpose of processing",
+          "body": "Receiving and evaluating your dealership or distribution application, contacting you, conducting pre-contractual discussions and managing the commercial relationship if one is established."
+        },
+        {
+          "heading": "Legal basis",
+          "body": "Your data is processed on the basis of Article 5/2-(c) of the KVKK, as directly related to the establishment or performance of a contract, Article 5/2-(f) on our legitimate interest, and the explicit consent you give in the form."
+        },
+        {
+          "heading": "Method of collection",
+          "body": "Your personal data is collected electronically and automatically when you complete the dealership application form on our website."
+        },
+        {
+          "heading": "Transfers",
+          "body": "Your data may be shared, on a limited basis, with the email and hosting providers we use so that your application can reach and be stored by us. Where a legal obligation applies, data may be shared with authorised public institutions."
+        },
+        {
+          "heading": "Retention period",
+          "body": "Your data is retained throughout the evaluation of your application and any ongoing commercial relationship, for the limitation periods set out in the relevant legislation; at the end of that period it is deleted, destroyed or anonymised."
+        },
+        {
+          "heading": "Your rights under Article 11 of the KVKK",
+          "body": "You have the right to learn whether your personal data is processed, to request information if it has been, to learn the purpose of processing and whether the data is used in line with that purpose, to request correction if it is incomplete or inaccurate, to request erasure or destruction, to request that such actions be notified to third parties to whom the data was transferred, to object to a result against you arising from analysis solely by automated systems, and to claim compensation if you suffer damage due to unlawful processing."
+        },
+        {
+          "heading": "How to apply",
+          "body": "You can send requests regarding your rights through the channels on our contact page. Your request will be concluded within thirty days at the latest."
+        }
+      ]
     }
   },
   "footer": {
     "tagline": "Çankırı's own soda.",
     "quickLinks": "Pages",
     "contact": "Contact",
-    "address": "Orta, Çankırı",
+    "legal": "Legal",
+    "address": "Orta OSB, Orta / Çankırı",
+    "mapLink": "Show on map",
+    "social": "Follow us",
+    "privacy": "Privacy and Cookie Policy",
+    "kvkk": "Personal Data Protection Notice",
     "rights": "All rights reserved."
   },
   "common": {

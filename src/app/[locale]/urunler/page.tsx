@@ -33,7 +33,10 @@ export default async function ProductsPage({
   setRequestLocale(locale);
 
   return (
-    <div className="pt-20">
+    <div className="bg-paper pt-8">
+      {/* ProductShowcase kendi py-24/sm:py-32 boşluğunu getiriyor; buradaki ek
+          pay yalnızca sabit başlığın altını açıyor. Toplam, diğer iç
+          sayfalardaki pt-32/sm:pt-40 ile aynı hizaya oturuyor. */}
       {/* Kategori sayfasında başlık H1 olmalı — ana sayfada aynı bileşen h2 basıyor */}
       <ProductShowcase locale={locale as Locale} as="h1" />
     </div>

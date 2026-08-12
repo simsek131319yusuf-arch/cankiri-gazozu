@@ -5,7 +5,27 @@
  *
  * Doldurulan alanlar SEO-Metinleri.md ve görsel paketi README'sindeki
  * doğrulanmış bilgilerden alındı. TODO'lar hâlâ müşteri teyidi bekliyor.
+ *
+ * BOŞ BIRAKILAN ALANLAR ARAYÜZDE GÖSTERİLMEZ. Telefon, sosyal medya ve posta
+ * kodu doğrulanana kadar boş kalmalı; footer, iletişim sayfası ve JSON-LD
+ * bu alanları koşullu okuyacak şekilde yazıldı. Uydurma değer koymayın.
  */
+
+/**
+ * Asıl alan adı henüz kesinleşmedi (SEO metinlerinde .com.tr, kodda .com).
+ * Karar verilene kadar deploy ortamından geçilebilsin diye env'e açıldı:
+ * canonical, sitemap, robots ve Open Graph hepsi buradan besleniyor, yani
+ * yanlış değer bütün SEO sinyallerini yanlış domaine gönderir.
+ *
+ * .env.local → NEXT_PUBLIC_SITE_URL=https://cankirigazozu.com.tr
+ */
+const url = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cankirigazozu.com').replace(
+  /\/+$/,
+  ''
+);
+
+const geo = {lat: 40.588559, lng: 33.182078};
+
 export const site = {
   name: 'Çankırı Gazozu',
   legalName: 'Çankırı Gazozu', // TODO(Yusuf): resmî ticari unvan
@@ -15,10 +35,8 @@ export const site = {
   /** Orta OSB'deki fabrikanın resmî açılışı */
   factoryOpenedAt: '2026-07-11',
 
-  // TODO(Yusuf): SEO metinlerinde cankirigazozu.com.tr geçiyor, sende .com var.
-  // Canlıya çıkmadan hangisinin asıl alan adı olduğu netleşmeli.
-  domain: 'cankirigazozu.com',
-  url: 'https://cankirigazozu.com',
+  domain: new URL(url).host,
+  url,
 
   address: {
     street: 'Orta Organize Sanayi Bölgesi', // TODO: parsel/kapı no
@@ -30,7 +48,9 @@ export const site = {
     country: 'TR'
   },
   // Fabrikanın yaklaşık merkezi (görsel paketi README'sinden doğrulandı).
-  geo: {lat: 40.588559, lng: 33.182078},
+  geo,
+  /** Footer ve iletişim sayfasındaki "Haritada göster" bağlantısı */
+  mapUrl: `https://www.google.com/maps/search/?api=1&query=${geo.lat}%2C${geo.lng}`,
 
   phone: '', // TODO: +90 ...
   email: 'info@cankirigazozu.com', // TODO
@@ -47,6 +67,13 @@ export const site = {
     facebook: '',
     youtube: ''
   },
+
+  /**
+   * Gizlilik ve KVKK metinlerinin son güncellenme tarihi (ISO).
+   * Metinlerin içeriği değişirse bu tarih de güncellenmeli.
+   * TODO(Yusuf): bu metinler bir hukukçu tarafından kontrol edilmeli.
+   */
+  legalUpdatedAt: '2026-08-12',
 
   /** Bayilik ağının aktif olduğu iller */
   activeRegions: [

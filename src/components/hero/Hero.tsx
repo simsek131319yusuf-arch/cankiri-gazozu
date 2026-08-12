@@ -4,12 +4,9 @@ import {useCallback, useState} from 'react';
 import {motion} from 'motion/react';
 import {useTranslations} from 'next-intl';
 import {Link} from '@/i18n/navigation';
-import {heroLayers} from '@/data/hero';
 import {usePrefersReducedMotion} from '@/hooks/usePrefersReducedMotion';
-import LayerVisual from './LayerVisual';
+import FactoryBackdrop, {FACTORY_IMAGE_SUNSET} from './FactoryBackdrop';
 import HeroIntro from './HeroIntro';
-
-const factoryLayer = heroLayers[heroLayers.length - 1];
 
 export default function Hero() {
   const t = useTranslations('hero');
@@ -28,9 +25,23 @@ export default function Hero() {
       <HeroIntro onFinish={handleFinish} />
 
       <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-night">
-        {/* Intro'nun son karesiyle aynı görsel — overlay kalkarken dikiş görünmez */}
+        {/* KADRAJ NOTU — dikey (1105x1423) bir fotoğraf:
+            · Mobilde kap zaten dikey olduğu için kırpma YATAYDA oluyor ve
+              görselin tamamı yukarıdan aşağıya görünüyor. Afiş gibi tasarlanmış
+              bir kare olduğu için mobilde en iyi sonucu burada veriyor.
+            · Masaüstünde kap yatay: kırpma DİKEYE dönüyor ve karenin ancak
+              yarısı görünüyor. Tam ortalarsak (%50) sadece gökyüzü kalıyor,
+              fabrika kadrajın dışına düşüyor. %80'e kaydırınca üstte gün
+              batımı ufku duruyor, fabrika kadrajın ortasına oturuyor, ön
+              plandaki yol da alttaki koyu geçişin içinde kalıyor.
+            Önceki yatay fotoğrafta gereken "alt kenardan yakınlaştırma" hilesi
+            burada GEREKMİYOR; fabrika zaten karenin merkezinde. */}
         <div className="absolute inset-0">
-          <LayerVisual layer={factoryLayer} priority />
+          <FactoryBackdrop
+            src={FACTORY_IMAGE_SUNSET}
+            priority
+            className="object-cover object-[50%_80%]"
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/20" />
 
@@ -47,7 +58,16 @@ export default function Hero() {
             <h1 className="font-display text-5xl leading-[0.95] font-bold text-paper text-balance sm:text-7xl lg:text-8xl">
               {t('title')}
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/80">
+
+            {/* Slogan H1'in ALTINDA duruyor, içine değil: H1 arama sonucunda
+                "çankırı gazozu" anahtar kelimesini taşımak zorunda. Kafiyesi
+                Türkçeye özgü (tozu/tuzu/gazozu); İngilizcede birebir karşılığı
+                yok, o yüzden anlamı koruyan ayrı bir cümle kullanılıyor. */}
+            <p className="font-display mt-5 max-w-xl text-2xl leading-snug font-semibold text-gold text-balance sm:text-3xl">
+              {t('slogan')}
+            </p>
+
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-paper/80">
               {t('subtitle')}
             </p>
 

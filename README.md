@@ -4,8 +4,10 @@
 tanıtım sitesi. Video intro, üç ürünlü vitrin, bayilik başvuru formu ve
 yerel SEO odaklı içerik yapısı.
 
-**Durum:** geliştirme sürüyor — yayına hazır değil.
-Yayın öncesi kritik eksikler için → [`DEVIR-NOTU.txt`](./DEVIR-NOTU.txt)
+**Durum:** kod tarafı tamam — lint, tip kontrolü, test ve build temiz.
+Yayını bekleyen engeller kod değil: müşteriden gelecek doğrulanmış bilgiler,
+üretimde kalıcı başvuru deposu, yasal metinlerin hukukçu onayı ve intro
+videosunun yeniden sıkıştırılması → [`DEVIR-NOTU.txt`](./DEVIR-NOTU.txt) § 2
 
 ---
 
@@ -13,26 +15,32 @@ Yayın öncesi kritik eksikler için → [`DEVIR-NOTU.txt`](./DEVIR-NOTU.txt)
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+cp .env.example .env.local   # değerleri doldurun
+npm run dev                  # http://localhost:3000
 ```
 
 ```bash
 npm run lint     # ESLint
-npm run build    # üretim derlemesi (19 sayfa statik üretilir)
+npm test         # vitest (11 test)
+npm run build    # üretim derlemesi (31 sayfa statik üretilir)
 ```
 
 ### Ortam değişkenleri
 
-`.env.local` dosyası oluşturun:
+Tamamı açıklamalarıyla [`.env.example`](./.env.example) dosyasında:
 
-```bash
-RESEND_API_KEY=...            # yoksa bayilik başvurusu yalnızca log'a yazılır
-DEALER_MAIL_TO=...            # başvuruların düşeceği e-posta
-DEALER_MAIL_FROM=...          # gönderen adresi
-```
+| Değişken | İşlevi |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | canonical, sitemap, robots ve Open Graph adreslerinin kaynağı |
+| `RESEND_API_KEY` | bayilik bildirim e-postası |
+| `DEALER_MAIL_TO` / `DEALER_MAIL_FROM` | alıcı ve gönderen adresleri |
+| `DEALER_STORE_DIR` | başvuru JSONL deposunun dizini |
+| `SITE_INDEXABLE` | `robots.txt`'yi doğrudan belirler (`1`/`0`) |
 
-> ⚠️ `RESEND_API_KEY` tanımlı değilken form kullanıcıya başarı mesajı gösterir
-> ama başvuru hiçbir yere kaydedilmez. Ayrıntı: `DEVIR-NOTU.txt` § 2.1
+> ⚠️ Başvurular **önce kalıcı olarak kaydedilir, sonra** e-posta gönderilir;
+> e-posta servisi çökse bile başvuru kaybolmaz. Üretimde ne depo ne e-posta
+> yapılandırılmışsa kullanıcıya **sahte başarı gösterilmez**, hata döner.
+> Dosya tabanlı depo serverless ortamda kalıcı değildir: `DEVIR-NOTU.txt` § 2.2
 
 ---
 
@@ -46,18 +54,24 @@ DEALER_MAIL_FROM=...          # gönderen adresi
 | Animasyon | motion (framer-motion) |
 | Çoklu dil | next-intl |
 | E-posta | Resend (HTTP API) |
+| Test | Vitest |
 
 ---
 
 ## Sayfalar
 
-| Türkçe | İngilizce |
-|---|---|
-| `/` | `/en` |
-| `/urunler` | `/en/products` |
-| `/urunler/[slug]` | `/en/products/[slug]` |
-| `/hakkimizda` | `/en/about` |
-| `/bayilik` | `/en/dealership` |
+| Türkçe | İngilizce | |
+|---|---|---|
+| `/` | `/en` | Ana sayfa |
+| `/urunler` | `/en/products` | Ürün kategorisi |
+| `/urunler/[slug]` | `/en/products/[slug]` | Ürün detayı |
+| `/hakkimizda` | `/en/about` | Fabrikamız |
+| `/hikayemiz` | `/en/our-story` | Hikâyemiz |
+| `/bayilik` | `/en/dealership` | Bayilik + başvuru formu |
+| `/sss` | `/en/faq` | S.S.S. (FAQPage şeması) |
+| `/iletisim` | `/en/contact` | İletişim |
+| `/gizlilik` | `/en/privacy` | Gizlilik ve çerez politikası (noindex) |
+| `/kvkk` | `/en/data-protection` | KVKK aydınlatma metni (noindex) |
 
 Türkçe kökte, İngilizce `/en` altında. Yol adları da çevrilir
 (`src/i18n/routing.ts` → `pathnames`).
@@ -68,13 +82,24 @@ Türkçe kökte, İngilizce `/en` altında. Yol adları da çevrilir
 
 ```
 src/
-├── app/[locale]/          Sayfalar (tr/en ortak)
-│   ├── page.tsx           Ana sayfa — hero + ürün vitrini
-│   ├── urunler/           Ürün kategorisi ve detay sayfaları
-│   ├── hakkimizda/        Fabrika sayfası
-│   └── bayilik/           Başvuru formu + server action
+├── app/
+│   ├── icon.png           32x32 favicon (dosya konvansiyonu)
+│   ├── apple-icon.png     180x180 apple touch icon
+│   ├── manifest.ts        PWA manifest
+│   ├── robots.ts          SITE_INDEXABLE ile yönetilir
+│   ├── sitemap.ts
+│   └── [locale]/          Sayfalar (tr/en ortak)
+│       ├── page.tsx       Ana sayfa — hero + vitrin + cam şişe + fabrika
+│       ├── urunler/       Ürün kategorisi ve detay sayfaları
+│       ├── hakkimizda/    Fabrika sayfası
+│       ├── hikayemiz/     Marka hikâyesi + zaman çizelgesi
+│       ├── bayilik/       Başvuru formu + server action
+│       ├── sss/           S.S.S. + FAQPage şeması
+│       ├── iletisim/
+│       ├── gizlilik/      Gizlilik ve çerez politikası
+│       └── kvkk/          KVKK aydınlatma metni
 ├── components/
-│   ├── hero/              Video intro ve hero
+│   ├── hero/              Video intro, hero, fabrika arka planı
 │   ├── products/          Ürün kartları, şişe görselleri
 │   ├── forms/             Bayilik formu
 │   ├── layout/            Header, footer, dil değiştirici
@@ -82,13 +107,13 @@ src/
 ├── data/                  ⚠️ İÇERİK KAYNAĞI — aşağıya bakın
 │   ├── products.ts        Ürünler
 │   ├── site.ts            Firma künyesi
-│   ├── hero.ts            Hero katmanları
 │   └── types.ts           Şemalar
-├── i18n/                  next-intl yapılandırması
+├── i18n/                  next-intl yapılandırması (rota tablosu dahil)
 ├── lib/
 │   ├── dealer.ts          Bayilik başvurusu (tek giriş kapısı)
-│   └── seo.ts             Canonical / hreflang üretimi
-└── hooks/
+│   ├── rate-limit.ts      In-memory sliding window
+│   └── seo.ts             Canonical / hreflang / breadcrumb üretimi
+└── hooks/                 usePrefersReducedMotion, useFocusTrap
 
 messages/                  tr.json · en.json — tüm arayüz metinleri
 docs/                      SEO metinleri, görsel paketi notları
@@ -97,7 +122,7 @@ public/                    Görseller ve intro videoları
 
 ---
 
-## Bozulmaması gereken iki kural
+## Bozulmaması gereken kurallar
 
 ### 1. Veri katmanı — admin paneli hazırlığı
 
@@ -123,6 +148,18 @@ Her sayfa kendi canonical'ını `src/lib/seo.ts → buildAlternates()` ile üret
 Next.js'te layout metadata'sındaki `alternates` alt sayfalara **miras kalır**;
 tanımlamayan her sayfa kendini ana sayfanın kopyası ilan eder ve indekslenmez.
 Bu hata bir kez yapıldı ve düzeltildi.
+
+### 3. Doğrulanmamış bilgi yayınlanmaz
+
+Telefon, sosyal medya hesapları, şişe hacmi, sertifikalar ve besin değerleri
+teyit edilene kadar `src/data/site.ts` ve `products.ts` içinde **boş/null**
+durur ve arayüzde **koşullu** render edilir. Boş bırakmak güvenlidir —
+uydurma değer koymayın.
+
+### 4. Yeni rota eklerken
+
+`src/i18n/routing.ts`'e eklenen her yol için `src/app/[locale]` altında gerçek
+bir sayfa dosyası olmak zorunda. Rotası tanımlı ama sayfası olmayan yol 404 verir.
 
 ---
 

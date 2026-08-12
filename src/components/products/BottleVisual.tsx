@@ -4,6 +4,23 @@ import type {Locale} from '@/i18n/routing';
 import {pick} from '@/data/types';
 
 /**
+ * Şişelerin fotoğraf içindeki boş payı her dosyada farklı: 2400 px'lik tuvalin
+ * kızılcıkta 2077, klasikte 1984, portakalda 1865 px'i doluydu. Aynı kutuya
+ * basıldıklarında portakal şişesi diğerlerinden ~%10 küçük görünüyordu.
+ *
+ * Aşağıdaki katsayılar üç şişeyi ortak bir görünür yüksekliğe (en küçük olan
+ * portakal) indirger, `shiftY` ise şişe gövdelerinin merkezini aynı yatay
+ * çizgiye taşır. Görsel DOSYALARI değişmiyor, yalnızca sunum düzeltiliyor.
+ *
+ * TODO(Yusuf): şişeler aynı çerçeveyle yeniden çekilirse bu tablo silinebilir.
+ */
+const bottleFit: Record<string, {scale: number; shiftY: number}> = {
+  'kizilcik-gazozu': {scale: 0.898, shiftY: 1.4},
+  'klasik-gazoz': {scale: 0.94, shiftY: 3.6},
+  'portakal-gazozu': {scale: 1, shiftY: 4.4}
+};
+
+/**
  * Ürün görseli. Gerçek şişe fotoğrafı tanımlıysa onu, değilse ürünün tema
  * rengiyle çizilmiş cam şişe placeholder'ını basar.
  *
@@ -20,18 +37,33 @@ export default function BottleVisual({
   priority?: boolean;
 }) {
   if (product.image) {
+    const fit = bottleFit[product.slug] ?? {scale: 1, shiftY: 0};
+
     return (
-      <Image
-        src={product.image}
-        alt={pick(product.imageAlt, locale)}
-        title={pick(product.imageTitle, locale)}
-        // Doğal ölçü 1000x2400 — oranı birebir vermek CLS'i sıfırlar
-        width={1000}
-        height={2400}
-        priority={priority}
-        sizes="(max-width: 768px) 45vw, 320px"
-        className="h-full w-auto object-contain drop-shadow-2xl"
-      />
+      <div className="relative flex h-full items-center justify-center">
+        {/* Klasik gazoz şeffaf olduğu için krem arka planda siliniyordu.
+            Şişenin arkasındaki bu yumuşak katman camın kenarlarını ayırıyor;
+            renkli ürünlerde de gövdeyi zemine oturtuyor. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute top-[7%] bottom-[5%] left-1/2 w-[58%] -translate-x-1/2 rounded-full blur-xl"
+          style={{
+            background: `linear-gradient(180deg, ${product.theme.accent}26, ${product.theme.base}59)`
+          }}
+        />
+        <Image
+          src={product.image}
+          alt={pick(product.imageAlt, locale)}
+          title={pick(product.imageTitle, locale)}
+          // Doğal ölçü 1000x2400 — oranı birebir vermek CLS'i sıfırlar
+          width={1000}
+          height={2400}
+          priority={priority}
+          sizes="(max-width: 768px) 45vw, 320px"
+          className="relative h-full w-auto object-contain drop-shadow-2xl"
+          style={{transform: `translateY(${fit.shiftY}%) scale(${fit.scale})`}}
+        />
+      </div>
     );
   }
 

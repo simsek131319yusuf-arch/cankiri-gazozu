@@ -3,19 +3,25 @@
 import {useCallback, useEffect, useRef, useState, useSyncExternalStore} from 'react';
 import {motion} from 'motion/react';
 import {useTranslations} from 'next-intl';
-import {heroLayers} from '@/data/hero';
 import {usePrefersReducedMotion} from '@/hooks/usePrefersReducedMotion';
-import LayerVisual from './LayerVisual';
+import FactoryBackdrop, {FACTORY_IMAGE} from './FactoryBackdrop';
 
-const SESSION_KEY = 'cg:intro-skipped';
+const SESSION_KEY = 'cg:intro-seen';
 const MOBILE_QUERY = '(max-width: 768px)';
-/** Metadata hiç gelmezse (ağ/codec sorunu) sayfayı kilitli bırakmamak için son çare */
-const METADATA_TIMEOUT = 8000;
-/** Video süresi bilindiğinde sonuna eklenen pay — `ended` gelmezse devreye girer */
-const ENDED_GRACE = 3000;
+/**
+ * Metadata HİÇ gelmezse (ağ/codec sorunu) sayfayı kilitli bırakmamak için son
+ * çare. Yalnızca bu durumda çalışır; metadata geldikten sonra iptal edilir.
+ * 8 sn'lik eski değer 8,6 sn'lik videoyla sınırdaydı, yavaş bağlantıda video
+ * daha başlamadan intro kapanıyordu.
+ */
+const METADATA_TIMEOUT = 12000;
+/** Oynatma başladıktan sonra bu kadar süre ilerleme olmazsa (buffer/donma) kesilir */
+const STALL_TIMEOUT = 4000;
+/** Donma kontrolünün sıklığı */
+const STALL_CHECK_INTERVAL = 1000;
 
-const POSTER = '/factory/fabrika-dis.jpg';
-const factoryLayer = heroLayers[heroLayers.length - 1];
+/** Video posteri ile alttaki fabrika karesi AYNI dosya — tarayıcı bir kez indirir. */
+const POSTER = FACTORY_IMAGE;
 
 const sources = {
   desktop: {webm: '/video/intro-desktop.webm', mp4: '/video/intro-desktop.mp4'},
@@ -33,6 +39,7 @@ type Variant = keyof typeof sources;
  * - prefers-reduced-motion açıksa video hiç oynamaz, fabrika karesi kalır.
  * - Video oynatılamazsa/hata verirse intro kapanır, sayfa asla kilitli kalmaz.
  * - JS kapalıysa <noscript> overlay'i gizler (layout.tsx).
+ * - Intro oturumda yalnızca bir kez oynar (bkz. finish()).
  *
  * Masaüstü/mobil seçimi CSS ile gizleyerek değil, tek <video> render ederek
  * yapılır — aksi halde tarayıcı iki videoyu birden indirir.
@@ -42,7 +49,9 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [finished, setFinished] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
-  const [duration, setDuration] = useState<number | null>(null);
+  const [metadataSeen, setMetadataSeen] = useState(false);
+  /** Son ilerleme anı: {video saati, o anın zaman damgası} */
+  const progressRef = useRef({time: 0, at: 0});
 
   // Sunucuda hangi ekranda olduğumuz bilinemez; null dönüp ilk boyada hiç video
   // basmıyoruz. Yanlış varyantı basıp sonra değiştirmek çift indirme demek olurdu.
@@ -53,26 +62,24 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
   );
 
   // Sunucuda her zaman false — istemcide gerçek değerle hidrate olur.
-  const skippedBefore = useSyncExternalStore(
-    subscribeToNothing,
-    readSkippedFlag,
-    () => false
-  );
+  const introSeen = useSyncExternalStore(subscribeToNothing, readSeenFlag, () => false);
 
   const reduceMotion = usePrefersReducedMotion();
 
-  const running = !finished && !skippedBefore && !reduceMotion;
+  const running = !finished && !introSeen && !reduceMotion;
   // Hareket hassasiyeti olan ziyaretçide perde fade bile yapmadan kalksın.
   const exitDuration = reduceMotion ? 0 : 0.8;
 
   /**
-   * Intro her açılışta oynar (Yusuf'un kararı). Oturum bayrağı SADECE kullanıcı
-   * bilerek geçtiğinde yazılır — video kendi sonuna geldiyse yazılmaz, yoksa
-   * sayfa yenilendiğinde intro bir daha hiç görünmez.
+   * KARAR (12 Ağustos 2026): intro oturumda YALNIZCA BİR KEZ oynar.
+   * ~11 MB'lık video her sayfa yenilemesinde tekrar tekrar izletilemez.
+   * Bu yüzden bayrak intro nasıl biterse bitsin yazılır: video doğal olarak
+   * bittiğinde de, kullanıcı "Geç"e bastığında da, hata/autoplay engeli ya da
+   * emniyet kesmesi yüzünden kapandığında da. Eski davranış (her açılışta
+   * oynatma) bilerek terk edildi; geri almayın.
    */
-  const finish = useCallback((skippedByUser = false) => {
+  const finish = useCallback(() => {
     setFinished(true);
-    if (!skippedByUser) return;
     try {
       sessionStorage.setItem(SESSION_KEY, '1');
     } catch {
@@ -99,14 +106,45 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
     }
   }, [running, variant, finish]);
 
-  // Video takılırsa (ağ kesilmesi, codec sorunu, `ended` hiç gelmemesi) intro
-  // sonsuza kadar durmasın. Süre bilindiğinde ona göre, bilinmiyorsa sabit pay.
+  // 1) Metadata hiç gelmiyorsa (bozuk dosya, engellenen istek) sayfa kilitli
+  // kalmasın. Metadata geldiği anda bu zamanlayıcı iptal olur; oynatma
+  // süresince ASLA devrede değildir.
   useEffect(() => {
-    if (!running) return;
-    const delay = duration ? duration * 1000 + ENDED_GRACE : METADATA_TIMEOUT;
-    const timer = setTimeout(() => finish(), delay);
+    if (!running || metadataSeen) return;
+    const timer = setTimeout(() => finish(), METADATA_TIMEOUT);
     return () => clearTimeout(timer);
-  }, [running, duration, finish]);
+  }, [running, metadataSeen, finish]);
+
+  // 2) Oynatma başladıktan sonraki emniyet: SÜREYE DEĞİL İLERLEMEYE bakılır.
+  // Eski kod "video süresi + 3 sn" sonra kesiyordu; yavaş bağlantıda video
+  // buffer'da beklerken bu süre doluyor ve intro video bitmeden kapanıyordu.
+  // Artık yalnızca currentTime STALL_TIMEOUT boyunca hiç ilerlemezse kesiliyor,
+  // yani buffer'da bekleyen ama ilerleyen video sonuna kadar oynayabiliyor.
+  useEffect(() => {
+    if (!running || !videoVisible) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    progressRef.current = {time: video.currentTime, at: Date.now()};
+
+    const onTimeUpdate = () => {
+      const current = video.currentTime;
+      // Küçük eşik: aynı kareyi tekrar bildiren timeupdate'ler ilerleme sayılmaz.
+      if (current > progressRef.current.time + 0.05) {
+        progressRef.current = {time: current, at: Date.now()};
+      }
+    };
+
+    video.addEventListener('timeupdate', onTimeUpdate);
+    const checker = setInterval(() => {
+      if (Date.now() - progressRef.current.at > STALL_TIMEOUT) finish();
+    }, STALL_CHECK_INTERVAL);
+
+    return () => {
+      video.removeEventListener('timeupdate', onTimeUpdate);
+      clearInterval(checker);
+    };
+  }, [running, videoVisible, variant, finish]);
 
   // Intro bitince sayfayı serbest bırak
   useEffect(() => {
@@ -117,13 +155,14 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
     };
   }, [running, onFinish]);
 
-  // Klavyeyle atlama
+  // Klavyeyle atlama: YALNIZCA Escape. Enter/Space pencere seviyesinde
+  // dinlenirse klavye ve ekran okuyucu kullanıcısı odaklandığı öğeyi
+  // kullanmaya çalışırken introyu farkında olmadan kapatır. Görünür "Geç"
+  // düğmesi zaten Enter/Space ile çalışıyor.
   useEffect(() => {
     if (!running) return;
     function onKey(event: KeyboardEvent) {
-      if (event.key === 'Escape' || event.key === 'Enter' || event.key === ' ') {
-        finish(true);
-      }
+      if (event.key === 'Escape') finish();
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -142,15 +181,22 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
       animate={{opacity: running ? 1 : 0}}
       transition={{duration: exitDuration, ease: 'easeInOut'}}
       inert={!running}
-      role="presentation"
+      // role="presentation" KALDIRILDI: perdenin içinde gerçek bir düğme var,
+      // "sunum amaçlı" demek yanlış bir sinyaldi. Perde zaten anlamsal bir öğe
+      // değil; rol vermemek doğrusu. Erişilebilir adı düğme taşıyor.
     >
       {running && (
         <>
-          {/* Video hazır olana kadar altta duran final fabrika karesi.
-              Hero'daki görselle aynı kaynak olduğu için ek indirme yapmaz ve
-              siyah ekran hiç görünmez. */}
-          <div className="absolute inset-0">
-            <LayerVisual layer={factoryLayer} priority />
+          {/* Video hazır olana kadar altta duran fabrika karesi. BİLEREK hero'dan
+              FARKLI görsel kullanıyor: buradaki amaç intro VİDEOSUNUN son
+              karesiyle örtüşmek, hero'yla değil. Video yüklenirken siyah ekran
+              yerine videonun bittiği sahne duruyor.
+              Perde kalktığında hero'daki gün batımı karesi ortaya çıkıyor;
+              bu bir geçiş, kusur değil. Video yeniden kodlanırken (DEVIR-NOTU
+              §2.5) son karesi hero görseliyle uyumlu hale getirilirse geçiş
+              tamamen görünmez olur. */}
+          <div className="absolute inset-0 origin-bottom scale-[1.55] sm:scale-[1.35]">
+            <FactoryBackdrop priority className="object-cover object-[50%_85%]" />
           </div>
 
           {variant && (
@@ -160,16 +206,19 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
               autoPlay
               muted
               playsInline
-              preload="auto"
+              // preload="auto" ilk açılışta ~11 MB'lık indirmeyi peşinen
+              // başlatıyordu. autoPlay zaten oynatma için gereken veriyi
+              // çektiğinden "metadata" oynatmayı geciktirmiyor: tarayıcı
+              // oynatmaya karar verdiği anda tamponlamayı kendisi sürdürüyor.
+              // Kazanç, autoplay engellenen / hareket azaltma açık olan ya da
+              // introyu ilk saniyede geçen ziyaretçide indirmenin hiç
+              // büyümemesi. Poster ve altındaki fabrika karesi zaten hazır.
+              preload="metadata"
               poster={POSTER}
               disablePictureInPicture
               controls={false}
               controlsList="nodownload noplaybackrate noremoteplayback"
-              onContextMenu={(event) => event.preventDefault()}
-              onLoadedMetadata={(event) => {
-                const value = event.currentTarget.duration;
-                setDuration(Number.isFinite(value) ? value : null);
-              }}
+              onLoadedMetadata={() => setMetadataSeen(true)}
               onCanPlay={() => setVideoVisible(true)}
               onEnded={() => finish()}
               onError={() => finish()}
@@ -187,7 +236,7 @@ export default function HeroIntro({onFinish}: {onFinish: () => void}) {
               de, açık bulut/arazi karesinde de. Kontrast bilerek yüksek. */}
           <button
             type="button"
-            onClick={() => finish(true)}
+            onClick={() => finish()}
             className="absolute right-6 bottom-8 rounded-full border border-paper/50 bg-black/55 px-6 py-2.5 text-sm font-medium tracking-wide text-paper shadow-lg backdrop-blur transition hover:border-paper hover:bg-black/75 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:right-10"
           >
             {t('skip')}
@@ -203,7 +252,7 @@ function subscribeToNothing() {
   return () => {};
 }
 
-function readSkippedFlag() {
+function readSeenFlag() {
   try {
     return sessionStorage.getItem(SESSION_KEY) === '1';
   } catch {

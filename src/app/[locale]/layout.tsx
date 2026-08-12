@@ -65,10 +65,13 @@ export async function generateMetadata({
       description: t('description'),
       images: ['/paylasim-gorseli.jpg']
     },
-    icons: {
-      icon: '/logo.png',
-      apple: '/logo.png'
-    },
+    // icons BİLEREK YOK: ikonlar Next dosya konvansiyonuyla veriliyor
+    // (src/app/icon.png 32x32, src/app/apple-icon.png 180x180). Next bu
+    // dosyalar için <link rel="icon"> ve <link rel="apple-touch-icon">
+    // etiketlerini kendisi üretir. Burada bir de metadata.icons tanımlanırsa
+    // ikisi birden çıkar ve çakışır. Eskiden 518 KB'lık /logo.png favicon
+    // olarak veriliyordu; ayrıca src/app/favicon.ico (Next varsayılanı)
+    // hâlâ duruyordu — o dosya silindi.
     robots: {
       index: true,
       follow: true

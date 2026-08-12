@@ -40,6 +40,36 @@ body[data-intro="running"] {
   overflow: hidden;
 }
 
+/* Mobil menü açıkken arka sayfa kaymasın (Header.tsx işareti koyar/kaldırır) */
+body[data-menu="open"] {
+  overflow: hidden;
+}
+
+/* "İçeriğe geç" bağlantısı: normalde görünmez, klavyeyle odaklanınca görünür.
+   display:none veya visibility:hidden KULLANILMAZ — o zaman odaklanılamaz. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  z-index: 60;
+  transform: translateY(-200%);
+  border-radius: 0 0 0.75rem 0.75rem;
+  background: var(--color-cornel);
+  color: var(--color-paper);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 ::selection {
   background: var(--color-cornel);
   color: var(--color-paper);
@@ -53,9 +83,16 @@ body[data-intro="running"] {
   *,
   *::before,
   *::after {
+    animation-delay: 0.001ms !important;
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
+    transition-delay: 0.001ms !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Skip link'in kayarak girmesi de bir hareket; anında görünsün. */
+  .skip-link {
+    transition: none;
   }
 }
 

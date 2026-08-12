@@ -9,6 +9,11 @@ import type {Locale} from '@/i18n/routing';
  * tam etkisini göstermez.
  */
 export default function OrganizationSchema({locale}: {locale: Locale}) {
+  // site.social alanları teyit edilene kadar boş. Boş bir sameAs dizisi
+  // ("sameAs": []) Google'a hiçbir şey söylemez, sadece gürültü ekler —
+  // o yüzden dolu değilse alan hiç yazılmıyor.
+  const sameAs = Object.values(site.social).filter(Boolean);
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'LocalBusiness', 'FoodEstablishment'],
@@ -37,16 +42,26 @@ export default function OrganizationSchema({locale}: {locale: Locale}) {
       latitude: site.geo.lat,
       longitude: site.geo.lng
     },
+    // Fabrikanın koordinatlarına giden harita bağlantısı; footer ve iletişim
+    // sayfasındakiyle aynı URL (site.mapUrl).
+    hasMap: site.mapUrl,
     areaServed: {'@type': 'AdministrativeArea', name: 'Çankırı'},
     telephone: site.phone || undefined,
     email: site.email,
-    sameAs: Object.values(site.social).filter(Boolean)
+    ...(sameAs.length > 0 ? {sameAs} : {})
+
+    // openingHours / priceRange / aggregateRating BİLEREK YOK. Bunlar
+    // doğrulanmamış bilgi olur (DEVIR-NOTU §1.5) ve yanlış yapısal veri,
+    // eksik yapısal veriden çok daha pahalıya patlar.
   };
 
   return (
     <script
       type="application/ld+json"
       // Yapısal veri script'i — içerik bizim kontrolümüzde, kullanıcı girdisi yok.
+      // NOT: JSON.stringify, değeri undefined olan alanları çıktıdan tamamen
+      // düşürür (streetAddress, postalCode, telephone). Yani teyit edilmemiş
+      // alanlar şemada "" veya null olarak değil, hiç görünmez.
       dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
     />
   );

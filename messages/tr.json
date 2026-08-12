@@ -1,39 +1,99 @@
 {
   "meta": {
     "home": {
-      "title": "Çankırı Gazozu | Çankırı'nın Kendi Gazoz Fabrikası",
-      "description": "Çankırı Orta'daki fabrikamızda geleneksel tarifle üretilen Çankırı Gazozu. Sade, portakallı ve Türkiye'de ilk kez üretilen kızılcıklı gazoz. Bayilik başvurusu için tıklayın."
+      "title": "Çankırı Gazozu | Cam Şişede Kızılcık, Klasik ve Portakal",
+      "description": "Çankırı'nın yerli gazoz markası. Kızılcık, klasik ve portakal aromalarıyla, cam şişede. Orta OSB'deki kendi fabrikamızda üretiliyor. Bayilik başvurusu açık."
     },
     "about": {
-      "title": "Çankırı Gazoz Fabrikası | Üretim ve Hikâyemiz",
-      "description": "Çankırı'nın Orta ilçesindeki gazoz fabrikamızda üretim nasıl yapılıyor? Çankırı Gazozu'nun kuruluş hikâyesi, geleneksel üretim yöntemi ve kızılcıklı gazozun doğuşu."
+      "title": "Fabrikamız | Çankırı Gazoz Üretim Tesisi — Orta OSB",
+      "description": "Çankırı Orta Organize Sanayi Bölgesi'nde kurulan gazoz fabrikamız. Saatte 36.000 şişe kapasite, Orta OSB'nin ilk fabrikası."
     },
     "products": {
       "title": "Ürünlerimiz | Çankırı Gazozu Çeşitleri — Cam Şişe",
       "description": "Kızılcık, klasik ve portakal aromalı Çankırı Gazozu çeşitleri. Hepsi cam şişede, Çankırı'daki kendi fabrikamızda üretiliyor."
     },
     "dealership": {
-      "title": "Gazoz Bayilik Başvurusu | Çankırı Gazozu",
-      "description": "Çankırı Gazozu bayisi olun. Şehrinizde satış yapmak için bayilik başvuru formunu doldurun, ekibimiz sizi arasın."
+      "title": "Gazoz Bayilik | Çankırı Gazozu Distribütörlük Başvurusu",
+      "description": "Çankırı Gazozu bayilik ve distribütörlük fırsatları. Karadeniz ve İç Anadolu'da bayi ağımızı büyütüyoruz. Başvuru formuyla hemen iletişime geçin."
+    },
+    "story": {
+      "title": "Hikâyemiz | Çankırı Gazozu — Bir Dükkândan Fabrikaya",
+      "description": "120 çeşit yerli gazozun toplandığı küçük bir dükkândan, Çankırı Orta OSB'deki kendi fabrikamıza uzanan hikâye. Çankırı Gazozu böyle doğdu."
+    },
+    "faq": {
+      "title": "Sık Sorulan Sorular",
+      "description": "Çankırı Gazozu nerede üretiliyor, hangi aromalar var, neden cam şişe, bayilik nasıl alınır? En çok sorulan soruların yanıtları."
+    },
+    "contact": {
+      "title": "İletişim",
+      "description": "Çankırı Gazozu iletişim bilgileri. Fabrikamız Çankırı'nın Orta ilçesindeki Organize Sanayi Bölgesi'nde."
+    },
+    "privacy": {
+      "title": "Gizlilik ve Çerez Politikası",
+      "description": "Çankırı Gazozu web sitesinde kişisel verilerin ve çerezlerin nasıl işlendiğine dair gizlilik politikası."
+    },
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni",
+      "description": "6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Çankırı Gazozu aydınlatma metni."
     }
   },
   "nav": {
     "home": "Ana Sayfa",
     "products": "Ürünler",
     "about": "Fabrikamız",
+    "story": "Hikâyemiz",
     "dealership": "Bayilik",
+    "faq": "S.S.S.",
     "contact": "İletişim",
     "menu": "Menü",
-    "close": "Kapat"
+    "close": "Kapat",
+    "dealerCta": "Bayilik başvurusu yap"
+  },
+  "a11y": {
+    "skipToContent": "İçeriğe geç",
+    "mainNav": "Ana menü",
+    "mobileNav": "Mobil menü",
+    "breadcrumb": "Sayfa yolu"
   },
   "hero": {
     "skip": "Geç",
     "eyebrow": "Çankırı · Orta",
     "title": "Çankırı Gazozu",
+    "slogan": "Tozu, tuzu, şimdi de gazozu.",
     "subtitle": "Çankırı'nın kendi toprağında, kendi fabrikasında üretilen gazoz. Geleneksel tarif, cam şişe, değişmeyen tat.",
-    "cta": "Bayilik için tıklayınız",
+    "cta": "Bayilik başvurusu yap",
     "secondaryCta": "Ürünleri gör",
     "scroll": "Aşağı kaydır"
+  },
+  "home": {
+    "whyGlass": {
+      "eyebrow": "Neden cam şişe?",
+      "title": "Tadın yarısı camdan gelir",
+      "paragraphs": [
+        "Cam, içine hiçbir şey katmaz. Aromayı emmez, tada karışmaz, ısıyla reaksiyona girmez. Gazozun karbonatı camda daha uzun süre tutunur — o ilk yudumdaki keskinlik, şişenin sonuna kadar yanınızda kalır.",
+        "Plastik ucuzdur, kolaydır, hızlıdır. Biz zoru seçtik. Çünkü çocukluğunuzda içtiğiniz gazozun neden o kadar iyi geldiğini biliyoruz.",
+        "Bir şey daha var: cam sonsuz kez geri dönüştürülebilir. Camda ısrar etmek, aynı zamanda daha az atık demek."
+      ],
+      "points": [
+        {"title": "Aromayı emmez", "body": "Tat şişeden değil, tarifin kendisinden gelir."},
+        {"title": "Gazı tutar", "body": "Karbonasyon camda daha uzun süre korunur."},
+        {"title": "Sonsuz geri dönüşüm", "body": "Cam, kalite kaybı olmadan defalarca dönüşür."}
+      ]
+    },
+    "factory": {
+      "cta": "Fabrikamızı görün",
+      "stats": [
+        {"value": "36.000", "label": "şişe / saat kapasite"},
+        {"value": "4.500 m²", "label": "kapalı üretim alanı"},
+        {"value": "İlk", "label": "Orta OSB'nin ilk fabrikası"}
+      ],
+      "steps": [
+        {"title": "Şişe yıkama", "body": "Her cam şişe dolumdan önce yıkanır ve kontrol edilir."},
+        {"title": "Dolum ve kapaklama", "body": "Karbonasyon ve dolum tek hat üzerinde, kontrollü ilerler."},
+        {"title": "Etiketleme ve sevkiyat", "body": "Etiketleme, paletleme ve parti kontrolü aynı çatı altında yapılır."}
+      ],
+      "locationLabel": "Orta OSB · Çankırı"
+    }
   },
   "products": {
     "eyebrow": "Ürünlerimiz",
@@ -41,9 +101,9 @@
     "subtitle": "Şişeye dokunun, tadın hikâyesini anlatalım.",
     "categoryTitle": "Üç Aroma, Tek Şişe: Cam",
     "categoryIntro": "Ürün sayısını çoğaltmak kolaydır. Zor olan, her birinin arkasında durabilmektir. Bu yüzden şu an rafta üç ürünümüz var: Kızılcık, Klasik ve Portakal. Üçü de cam şişede, üçü de Çankırı'da üretiliyor.",
-    "tapHint": "Detay için tıklayın",
-    "closeHint": "Kapatmak için tıklayın",
-    "detail": "Ürün sayfası",
+    "tapHint": "Ürün bilgilerini göster",
+    "closeHint": "Bilgileri gizle",
+    "detail": "{name} sayfasını aç",
     "volume": "{volume} ml · cam şişe",
     "packaging": "Ambalaj",
     "flavorLabel": "Aroma",
@@ -51,18 +111,29 @@
     "soon": "Yakında",
     "backToProducts": "Tüm ürünler"
   },
+  "productPage": {
+    "tasteTitle": "Tadı nasıl?",
+    "pairingTitle": "Neyle iyi gider?",
+    "infoTitle": "Ürün bilgileri",
+    "storageLabel": "Saklama",
+    "storageValue": "Serin ve kuru yerde, doğrudan güneş ışığından uzakta",
+    "pendingInfo": "Hacim, koli içi adet, raf ömrü, içindekiler ve besin değerleri ambalaj üzerinden doğrulandıktan sonra bu sayfada yayınlanacak.",
+    "dealerCtaTitle": "Toptan satın almak ister misiniz?",
+    "dealerCtaBody": "Şehrinizde Çankırı Gazozu satmak için bayilik başvuru formunu doldurun, ekibimiz sizi arasın.",
+    "dealerCtaButton": "Bayilik başvurusu yap"
+  },
   "about": {
     "eyebrow": "Fabrikamız",
     "title": "Çankırı'da üretiliyor, Çankırı'da şişeleniyor",
     "body": "Çankırı Gazozu, Çankırı'nın Orta ilçesindeki kendi fabrikasında üretiliyor. Suyundan şişesine kadar üretimin her aşaması burada gerçekleşiyor. Ne fason üretim var, ne başka şehirden gelen bir hat — bu gazoz gerçekten Çankırı'nın.",
     "cta": "Fabrikamızı tanıyın",
     "page": {
-      "title": "Çankırı Gazoz Fabrikası",
+      "title": "Orta OSB'nin İlk Fabrikası",
       "lead": "Çankırı'nın Orta ilçesinde kurulu fabrikamızda, gazoz hâlâ bildiğiniz gibi üretiliyor: cam şişede, geleneksel tarifle, acele etmeden.",
       "sections": [
         {
-          "heading": "Çankırı'da bir gazoz fabrikası",
-          "body": "Çankırı Gazozu, adını taşıdığı şehirde üretiliyor. Fabrikamız Çankırı'nın Orta ilçesinde; şişeleme, karbonatlama ve etiketleme dahil üretimin tamamı burada yapılıyor. Bugün pek çok yerel marka üretimini başka şehirlere yaptırırken biz üretimi Çankırı'da tuttuk. Bunun sebebi sadece duygusal değil: gazozun tadı, kullanılan suyla doğrudan bağlantılı."
+          "heading": "Boş bir arazi, dolu bir hayal",
+          "body": "Çankırı'nın Orta ilçesindeki Organize Sanayi Bölgesi kurulduğunda 53 parsel planlanmıştı; yaklaşık bin dönümlük bir alan. Ama bir OSB'yi OSB yapan parsel değil, ilk bacadır. O ilk baca bizim oldu."
         },
         {
           "heading": "Geleneksel üretim, değişmeyen tarif",
@@ -70,20 +141,211 @@
         },
         {
           "heading": "Kızılcıklı gazoz: Çankırı'dan çıkan bir ilk",
-          "body": "Kızılcık, Çankırı'nın kendi toprağında yetişen ve şehirle özdeşleşmiş bir meyve. Bu meyveden gazoz üretme fikri buradan doğdu ve kızılcıklı gazoz ilk kez bizim fabrikamızda üretildi. Kızılcığın doğal ekşiliği gazozun tatlılığını dengeliyor; ortaya klasik meyveli gazozlara benzemeyen, tamamen kendine ait bir tat çıkıyor."
+          "body": "Kızılcık, Çankırı'nın kendi toprağında yetişen ve şehirle özdeşleşmiş bir meyve. Bu meyveden gazoz üretme fikri buradan doğdu. Kızılcığın doğal ekşiliği gazozun tatlılığını dengeliyor; ortaya klasik meyveli gazozlara benzemeyen, tamamen kendine ait bir tat çıkıyor."
+        }
+      ],
+      "facts": {
+        "title": "Tesisin künyesi",
+        "items": [
+          {"label": "Konum", "value": "Orta OSB, Orta / Çankırı"},
+          {"label": "Kapalı alan", "value": "~4.500 m²"},
+          {"label": "Kapasite", "value": "Saatte 36.000 şişe"},
+          {"label": "İstihdam", "value": "İlk etap 50 kişi, tam kapasitede 200 kişi"},
+          {"label": "Açılış", "value": "11 Temmuz 2026"},
+          {"label": "Statü", "value": "Orta OSB'nin ilk fabrikası"}
+        ]
+      },
+      "line": {
+        "title": "Üretim hattı",
+        "body": "Fabrikamızda şişe yıkamadan dolum ve kapaklamaya, etiketlemeden paletlemeye kadar tüm süreç tek çatı altında yürüyor. Cam şişe hattı, her şişenin yıkanmasından dolumuna kadar kontrollü ilerliyor."
+      },
+      "quotes": [
+        {
+          "text": "Yıllardır 'Orta'da da üretim olur mu?' diye kurduğumuz hayal bugün gerçeğe dönüştü.",
+          "author": "Ömer Bezci",
+          "role": "Orta Belediye Başkanı"
         },
         {
-          "heading": "Nerede bulunur?",
-          "body": "Çankırı Gazozu, Çankırı merkez ve ilçelerindeki marketler, restoranlar ve büfelerde satılıyor. Ürünlerimizi kendi şehrinizde satmak isterseniz bayilik başvuru formunu doldurmanız yeterli; ekibimiz sizi arayıp koşulları anlatıyor."
+          "text": "Bu toprakların yıllardır beklediği yatırım bugün hayata geçti. Artık insanlarımız iş bulmak için başka şehirlere gitmek zorunda kalmayacak.",
+          "author": "Kaptan Mustafa Can",
+          "role": "Yatırımcı"
         }
-      ]
+      ],
+      "closing": {
+        "title": "Nerede bulunur?",
+        "body": "Çankırı Gazozu, faaliyet bölgelerimizdeki marketler, restoranlar ve büfelerde satılıyor. Ürünlerimizi kendi şehrinizde satmak isterseniz bayilik başvuru formunu doldurmanız yeterli; ekibimiz sizi arayıp koşulları anlatıyor.",
+        "cta": "Bayilik başvurusu yap"
+      }
     }
+  },
+  "story": {
+    "eyebrow": "Hikâyemiz",
+    "title": "120 Çeşit Gazozun Toplandığı Bir Dükkândan Başladı",
+    "lead": "Çankırı Gazozu bir pazarlama toplantısında doğmadı. Yaklaşık 20 metrekarelik bir dükkânda doğdu.",
+    "sections": [
+      {
+        "heading": "Bir koleksiyoncunun merakı",
+        "body": "Kurucumuz Aybars Şentürk, Türkiye'nin dört bir yanından yerli gazozları toplamaya başladığında niyeti bir marka kurmak değildi. Merak ediyordu. Hangi şehir hangi gazozu üretiyor, hangi tarif nereden geliyor, hangi şişe kaç yıllık — bunları araştırıyordu. Dükkânda 120 çeşide yakın gazoz bir araya geldi. Aralarında 70 yıl öncesine ait şişeler bile vardı. Türkiye'nin gazoz haritasını bu kadar yakından tanıyan biri, eninde sonunda aynı soruyu soracaktı: peki Çankırı'nın gazozu nerede?"
+      },
+      {
+        "heading": "Kızılcıkla başladık",
+        "body": "Cevabı Çankırı'nın kendi toprağında bulduk: kızılcık. 2019'da kızılcık aromalı gazozu ürettik. Kolay bir tercih değildi — kızılcık ekşidir, dengelemesi zordur, alışılmış bir gazoz aroması değildir. Ama tam da bu yüzden doğruydu. Başka şehrin taklit edemeyeceği bir tat arıyorduk ve o tat zaten buradaydı."
+      },
+      {
+        "heading": "Yalnız yürünmeyen yol",
+        "body": "Bir marka, dükkândan fabrikaya kendi başına yürüyemez. Ocak 2025'te iş insanı Kaptan Mustafa Can ve Naci Aydoğan bu yola ortak oldu. Çankırı'nın dışında kazanmış, memleketine yatırım yapmak isteyen insanlardı. Ekim 2025'te Orta OSB'de fabrikanın temelini attık. 11 Temmuz 2026'da fabrika resmen açıldı."
+      },
+      {
+        "heading": "Bundan sonrası",
+        "body": "Hedefimiz sadece gazoz satmak değil. Çankırı'nın tuzlaması, Orta'nın alıcı, bu toprağın adı duyulmamış tatları — hepsinin bir şişesi, bir ambalajı, bir markası olabilir. Biz gazozla başladık."
+      }
+    ],
+    "quotes": [
+      {
+        "text": "Biz buraya gazoz getirmeden önce mutlaka tarihini ve içeriğini araştırıyorum. Kendi içmediğim gazozu buraya getirmiyorum.",
+        "author": "Aybars Şentürk",
+        "role": "Kurucu"
+      },
+      {
+        "text": "Anlatılabilecek bir duygu değil. Çankırı'da çok sık yaşanan bir his de değil bu. Buradan bir marka çıkarıp, onu fabrikaya ve ulusal bir değere dönüştürmek kolay değil.",
+        "author": "Aybars Şentürk",
+        "role": "Kurucu"
+      }
+    ],
+    "timeline": {
+      "title": "Kısa tarihçe",
+      "items": [
+        {"year": "2019", "title": "Kızılcık gazozu", "body": "Çankırı'nın kızılcığından üretilen ilk gazoz rafa çıktı."},
+        {"year": "Ocak 2025", "title": "Ortaklık", "body": "Kaptan Mustafa Can ve Naci Aydoğan markaya ortak oldu."},
+        {"year": "Ekim 2025", "title": "Temel atma", "body": "Orta OSB'de fabrikanın temeli atıldı."},
+        {"year": "11 Temmuz 2026", "title": "Fabrika açılışı", "body": "Orta OSB'nin ilk fabrikası üretime başladı."}
+      ]
+    },
+    "cta": {
+      "title": "Fabrikayı da görün",
+      "body": "Hikâyenin devamı Orta OSB'de, kendi üretim hattımızda sürüyor.",
+      "button": "Fabrikamızı görün"
+    }
+  },
+  "faq": {
+    "eyebrow": "Sık sorulan sorular",
+    "title": "Merak edilenler",
+    "lead": "Çankırı Gazozu hakkında en çok sorulan sorular ve yanıtları.",
+    "items": [
+      {
+        "question": "Çankırı Gazozu nerede üretiliyor?",
+        "answer": "Çankırı'nın Orta ilçesindeki Organize Sanayi Bölgesi'nde bulunan kendi fabrikamızda üretiliyor. Tesis Temmuz 2026'da açıldı ve Orta OSB'nin ilk fabrikası."
+      },
+      {
+        "question": "Hangi aromalar var?",
+        "answer": "Şu anda üç ürünümüz satışta: Kızılcık, Klasik ve Portakal. Üçü de cam şişede."
+      },
+      {
+        "question": "Kızılcık gazozu neden özel?",
+        "answer": "Kızılcık zor bir meyve; ekşiliği baskındır ve dengelenmesi ustalık ister. Bu aromayı 2019'da ürettiğimizde Türkiye'de bir benzeri yoktu."
+      },
+      {
+        "question": "Neden sadece cam şişe kullanıyorsunuz?",
+        "answer": "Cam, aromayı emmez ve tada karışmaz. Karbonasyonu daha uzun süre korur. Ayrıca sonsuz kez geri dönüştürülebilir."
+      },
+      {
+        "question": "Nereden satın alabilirim?",
+        "answer": "Faaliyet bölgelerimizdeki bayilerimizden, marketlerden ve restoranlardan temin edebilirsiniz."
+      },
+      {
+        "question": "Bayilik almak istiyorum, ne yapmalıyım?",
+        "answer": "Bayilik sayfamızdaki formu doldurun; ekibimiz başvurunuzu değerlendirip sizinle iletişime geçsin."
+      },
+      {
+        "question": "Yeni ürün gelecek mi?",
+        "answer": "Çankırı'ya özgü tatlar üzerinde çalışıyoruz. Tuzlama ve Orta alıcı gibi yerel ürünler planlarımız arasında."
+      }
+    ],
+    "cta": {
+      "title": "Sorunuzun yanıtı yok mu?",
+      "body": "Bize yazın, en kısa sürede dönelim.",
+      "button": "İletişime geçin"
+    }
+  },
+  "contact": {
+    "eyebrow": "İletişim",
+    "title": "Bize ulaşın",
+    "lead": "Fabrikamız Çankırı'nın Orta ilçesindeki Organize Sanayi Bölgesi'nde. Bayilik, toptan satış ve diğer tüm konular için aşağıdaki kanallardan bize ulaşabilirsiniz.",
+    "addressTitle": "Adres",
+    "phoneTitle": "Telefon",
+    "emailTitle": "E-posta",
+    "socialTitle": "Sosyal medya",
+    "mapLink": "Haritada göster",
+    "dealerTitle": "Bayilik başvurusu",
+    "dealerBody": "Şehrinizde Çankırı Gazozu satmak istiyorsanız başvuru formunu doldurun; ekibimiz sizi arasın.",
+    "dealerButton": "Bayilik başvurusu yap",
+    "pending": "Bu bilgi yakında yayınlanacak."
   },
   "dealership": {
     "eyebrow": "Bayilik",
-    "title": "Çankırı Gazozu bayisi olun",
+    "title": "Çankırı Gazozu Bayisi Olun",
     "subtitle": "Şehrinizde Çankırı Gazozu satmak istiyorsanız formu doldurun, ekibimiz en kısa sürede sizi arasın.",
+    "why": {
+      "title": "Neden Çankırı Gazozu?",
+      "items": [
+        {
+          "title": "Rafta ayrışan ürün",
+          "body": "Kızılcık gazozu rafta dikkat çeker ve müşteri sorusu doğurur — satış konuşmasını sizin yerinize ürün yapar."
+        },
+        {
+          "title": "Cam şişe farkı",
+          "body": "Kafe, restoran ve mangal işletmeleri cam şişe arıyor. Plastikle yarışan bir kategoride değilsiniz."
+        },
+        {
+          "title": "Yerli üretim rüzgârı",
+          "body": "Tüketici tercihi yerli markalara kayarken, memleket hikâyesi olan bir ürünü satıyorsunuz."
+        },
+        {
+          "title": "Kendi fabrikası olan üretici",
+          "body": "Fason değil. Tedarik zinciri, kapasite ve teslimat bizim kontrolümüzde."
+        }
+      ]
+    },
+    "regions": {
+      "title": "Faaliyet bölgelerimiz",
+      "note": "Bu illerin dışından gelen başvuruları da değerlendiriyoruz — hedefimiz 81 il."
+    },
+    "process": {
+      "title": "Başvurudan sonra ne oluyor?",
+      "steps": [
+        {"title": "Başvurunuzu alıyoruz", "body": "Form bize ulaştığı anda kaydediliyor ve ekibimize bildirim düşüyor."},
+        {"title": "Ön değerlendirme", "body": "Şehrinizdeki mevcut bayi ağını ve iş kolunuzu değerlendiriyoruz."},
+        {"title": "Görüşme", "body": "Sizi arayıp çalışma koşullarını, sipariş ve teslimat modelini konuşuyoruz."},
+        {"title": "İlk sevkiyat", "body": "Anlaştığımızda ilk siparişinizi planlıyor ve sevkiyata çıkıyoruz."}
+      ]
+    },
+    "faq": {
+      "title": "Bayilik hakkında sık sorulanlar",
+      "items": [
+        {
+          "question": "Kimler başvurabilir?",
+          "answer": "Market, bakkal, toptancı, restoran, kafe ve mangal işletmeleri ile dağıtım yapan firmalar başvurabilir."
+        },
+        {
+          "question": "Hangi illerden başvuru alıyorsunuz?",
+          "answer": "Öncelikli bölgelerimiz faaliyet illerimiz; ancak diğer illerden gelen başvuruları da değerlendiriyoruz."
+        },
+        {
+          "question": "Başvuru ücretli mi?",
+          "answer": "Hayır. Başvuru ve değerlendirme süreci ücretsizdir."
+        },
+        {
+          "question": "Ne kadar sürede dönüş yapıyorsunuz?",
+          "answer": "Başvurunuzu aldıktan sonra en kısa sürede sizinle iletişime geçiyoruz."
+        }
+      ]
+    },
+    "alt": {
+      "title": "Formu doldurmak istemiyor musunuz?",
+      "body": "Bayilik ve toptan satış için doğrudan bize de yazabilirsiniz."
+    },
     "form": {
+      "title": "Başvuru formu",
       "fullName": "Ad Soyad",
       "company": "Firma Adı",
       "city": "Şehir",
@@ -95,17 +357,108 @@
       "submit": "Başvuruyu Gönder",
       "submitting": "Gönderiliyor...",
       "required": "Bu alan zorunlu",
+      "tooLong": "Bu alan en fazla {max} karakter olabilir",
       "invalidPhone": "Geçerli bir telefon numarası girin",
       "invalidEmail": "Geçerli bir e-posta girin",
+      "consent": "Kişisel verilerimin bayilik başvurumun değerlendirilmesi amacıyla işlenmesini kabul ediyorum.",
+      "consentLinkText": "KVKK Aydınlatma Metni",
+      "consentRequired": "Devam edebilmek için onay vermeniz gerekiyor",
       "success": "Başvurunuz bize ulaştı. En kısa sürede sizi arayacağız.",
-      "error": "Başvuru gönderilemedi. Lütfen tekrar deneyin ya da bizi arayın."
+      "error": "Başvuru gönderilemedi. Lütfen tekrar deneyin ya da bize e-posta gönderin.",
+      "rateLimited": "Çok fazla başvuru gönderildi. Lütfen biraz sonra tekrar deneyin.",
+      "successTitle": "Başvurunuz alındı",
+      "backHome": "Ana sayfaya dön"
+    }
+  },
+  "legal": {
+    "updated": "Son güncelleme: {date}",
+    "privacy": {
+      "title": "Gizlilik ve Çerez Politikası",
+      "lead": "Bu politika, Çankırı Gazozu web sitesini ziyaret ettiğinizde hangi verilerin işlendiğini ve bu verilerin nasıl korunduğunu açıklar.",
+      "sections": [
+        {
+          "heading": "Hangi verileri topluyoruz?",
+          "body": "Bu sitede yalnızca bayilik başvuru formu üzerinden veri topluyoruz. Formda paylaştığınız ad soyad, firma adı, şehir, iş kolu, telefon numarası ve varsa e-posta adresiniz ile formda yazdığınız mesaj bize iletilir. Site üzerinde üyelik, sipariş veya ödeme işlemi bulunmamaktadır."
+        },
+        {
+          "heading": "Verileri ne amaçla kullanıyoruz?",
+          "body": "Paylaştığınız bilgileri yalnızca bayilik başvurunuzu değerlendirmek, sizinle iletişime geçmek ve talebiniz hakkında bilgi vermek için kullanıyoruz. Bu bilgiler pazarlama amaçlı olarak üçüncü kişilere satılmaz veya devredilmez."
+        },
+        {
+          "heading": "Verileri kimlerle paylaşıyoruz?",
+          "body": "Başvurunuzun bize ulaşabilmesi için e-posta altyapısı sağlayıcımız gibi hizmet aldığımız tedarikçilerle sınırlı veri paylaşımı yapılabilir. Bu paylaşım yalnızca hizmetin sunulması amacıyla ve gerekli olduğu ölçüde gerçekleşir."
+        },
+        {
+          "heading": "Verileri ne kadar süre saklıyoruz?",
+          "body": "Başvurunuz, değerlendirme süreci ve olası ticari ilişki boyunca saklanır. Süreç olumsuz sonuçlanırsa kayıtlar makul bir süre sonunda silinir. Dilediğiniz zaman kaydınızın silinmesini talep edebilirsiniz."
+        },
+        {
+          "heading": "Çerezler",
+          "body": "Bu sitede reklam veya takip amaçlı çerez kullanılmamaktadır. Sitenin çalışması için gerekli olan teknik veriler (örneğin dil tercihiniz ve tanıtım videosunun bu oturumda gösterilip gösterilmediği bilgisi) tarayıcınızın kendi depolama alanında tutulur ve bize gönderilmez. Tarayıcı ayarlarınızdan bu verileri her zaman temizleyebilirsiniz."
+        },
+        {
+          "heading": "Güvenlik",
+          "body": "Formla ilettiğiniz bilgiler şifreli bağlantı (HTTPS) üzerinden aktarılır ve yetkisiz erişime karşı korunur."
+        },
+        {
+          "heading": "Haklarınız ve iletişim",
+          "body": "Kişisel verilerinize erişme, düzeltme ve silinmesini isteme haklarınıza ilişkin ayrıntılar KVKK Aydınlatma Metni'nde yer alır. Talepleriniz için bizimle iletişim sayfamızdaki kanallardan bağlantı kurabilirsiniz."
+        }
+      ]
+    },
+    "kvkk": {
+      "title": "KVKK Aydınlatma Metni",
+      "lead": "6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında, bayilik başvuru formu aracılığıyla işlenen kişisel verilerinize ilişkin aydınlatma metnidir.",
+      "sections": [
+        {
+          "heading": "Veri sorumlusu",
+          "body": "Kişisel verileriniz, veri sorumlusu sıfatıyla Çankırı Gazozu tarafından aşağıda açıklanan kapsamda işlenmektedir. İletişim bilgilerimize iletişim sayfamızdan ulaşabilirsiniz."
+        },
+        {
+          "heading": "İşlenen kişisel veriler",
+          "body": "Kimlik bilgisi (ad, soyad), iletişim bilgisi (telefon numarası, e-posta adresi, şehir) ve müşteri işlem bilgisi (firma adı, iş kolu, form üzerinden ilettiğiniz mesaj)."
+        },
+        {
+          "heading": "İşleme amacı",
+          "body": "Bayilik ve distribütörlük başvurunuzun alınması, değerlendirilmesi, sizinle iletişime geçilmesi, sözleşme öncesi görüşmelerin yürütülmesi ve ticari ilişki kurulması hâlinde bu ilişkinin yönetilmesi."
+        },
+        {
+          "heading": "Hukuki sebep",
+          "body": "Verileriniz, KVKK m.5/2-(c) uyarınca sözleşmenin kurulması veya ifasıyla doğrudan ilgili olması, KVKK m.5/2-(f) uyarınca meşru menfaatimiz ve formda verdiğiniz açık rızaya dayanarak işlenmektedir."
+        },
+        {
+          "heading": "Toplama yöntemi",
+          "body": "Kişisel verileriniz, web sitemizdeki bayilik başvuru formunu doldurmanız suretiyle elektronik ortamda otomatik yollarla toplanmaktadır."
+        },
+        {
+          "heading": "Aktarım",
+          "body": "Verileriniz, başvurunuzun bize ulaştırılması ve saklanması amacıyla hizmet aldığımız e-posta ve barındırma hizmeti sağlayıcılarıyla sınırlı olarak paylaşılabilir. Yasal yükümlülük hâlinde yetkili kamu kurum ve kuruluşlarıyla paylaşım yapılabilir."
+        },
+        {
+          "heading": "Saklama süresi",
+          "body": "Verileriniz, başvurunuzun değerlendirilmesi ve varsa ticari ilişkinin devamı süresince, ilgili mevzuatta öngörülen zamanaşımı süreleri boyunca saklanır; sürenin sonunda silinir, yok edilir veya anonim hâle getirilir."
+        },
+        {
+          "heading": "KVKK m.11 kapsamındaki haklarınız",
+          "body": "Kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme, silinmesini veya yok edilmesini isteme, yapılan işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenen verilerin münhasıran otomatik sistemler ile analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve kanuna aykırı işleme sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme haklarına sahipsiniz."
+        },
+        {
+          "heading": "Başvuru yolu",
+          "body": "Haklarınıza ilişkin taleplerinizi iletişim sayfamızda yer alan kanallar üzerinden bize iletebilirsiniz. Talebiniz en geç otuz gün içinde sonuçlandırılır."
+        }
+      ]
     }
   },
   "footer": {
     "tagline": "Çankırı'nın kendi gazozu.",
     "quickLinks": "Sayfalar",
     "contact": "İletişim",
-    "address": "Orta, Çankırı",
+    "legal": "Yasal",
+    "address": "Orta OSB, Orta / Çankırı",
+    "mapLink": "Haritada göster",
+    "social": "Bizi takip edin",
+    "privacy": "Gizlilik ve Çerez Politikası",
+    "kvkk": "KVKK Aydınlatma Metni",
     "rights": "Tüm hakları saklıdır."
   },
   "common": {

@@ -29,6 +29,10 @@ export type Product = {
   shortDescription: Localized;
   /** Ürün sayfasındaki SEO ürün metni */
   longDescription: Localized;
+  /** "Tadı nasıl?" bölümü — ürün sayfasında gösterilir */
+  taste: Localized;
+  /** "Neyle iyi gider?" bölümü — ürün sayfasında gösterilir */
+  pairing: Localized;
   /** "Kızılcık", "Portakal", "Klasik" gibi aroma etiketi */
   flavor: Localized;
   /** Rozet: "Türkiye'de ilk ve tek" gibi. Yoksa null. */
